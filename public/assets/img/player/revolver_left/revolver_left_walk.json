@@ -1,0 +1,271 @@
+{
+	"textures": [
+		{
+			"image": "revolver_left_walk.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 66,
+				"h": 705
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "revolver_left_walk_00",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					}
+				},
+				{
+					"filename": "revolver_left_walk_01",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 101,
+						"w": 66,
+						"h": 101
+					}
+				},
+				{
+					"filename": "revolver_left_walk_02",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 202,
+						"w": 66,
+						"h": 101
+					}
+				},
+				{
+					"filename": "revolver_left_walk_07",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 303,
+						"w": 66,
+						"h": 101
+					}
+				},
+				{
+					"filename": "revolver_left_walk_08",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 404,
+						"w": 66,
+						"h": 101
+					}
+				},
+				{
+					"filename": "revolver_left_walk_03",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 66,
+						"h": 100
+					},
+					"frame": {
+						"x": 0,
+						"y": 505,
+						"w": 66,
+						"h": 100
+					}
+				},
+				{
+					"filename": "revolver_left_walk_09",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 66,
+						"h": 100
+					},
+					"frame": {
+						"x": 0,
+						"y": 605,
+						"w": 66,
+						"h": 100
+					}
+				},
+				{
+					"filename": "revolver_left_walk_06",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					}
+				},
+				{
+					"filename": "revolver_left_walk_05",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 101,
+						"w": 66,
+						"h": 101
+					}
+				},
+				{
+					"filename": "revolver_left_walk_04",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 202,
+						"w": 66,
+						"h": 101
+					}
+				},
+				{
+					"filename": "revolver_left_walk_11",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 303,
+						"w": 66,
+						"h": 101
+					}
+				},
+				{
+					"filename": "revolver_left_walk_10",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 404,
+						"w": 66,
+						"h": 101
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.6"
+	}
+}
