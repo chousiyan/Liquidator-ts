@@ -20,7 +20,7 @@ const config = {
     default: 'arcade',
     arcade: {
       gravity: { y: 0 },
-      debug: true,
+      debug: false,
     },
   },
   scene: [PreloaderScene, Level1Scene, Level1UIScene],

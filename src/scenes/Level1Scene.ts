@@ -1,16 +1,24 @@
 import Phaser from 'phaser';
 
 import createPlayerAnims from '../anims/PlayerAnims';
+import createBackgroundAnims from '../anims/BackgroundAnims';
 
 export default class Level1Scene extends Phaser.Scene {
   player;
-  playerSpeed = 120;
+  playerSpeed = 600;
   // Default speed = 120
   pond;
   signs;
   blank_blockers;
   vendingMachine1;
   vendingMachine2;
+  vendingMachineBlocker;
+  truck1;
+  truck2;
+  truckBlocker;
+  barrels;
+  barrelShadow;
+  floatWood;
   cursors: Phaser.Types.Input.Keyboard.CursorKeys;
   // platforms;
   // stars;
@@ -50,9 +58,13 @@ export default class Level1Scene extends Phaser.Scene {
 
     // Background Blockers
     this.blank_blockers = this.physics.add.staticGroup();
-    let vendingMachineBlocker = this.blank_blockers
+    this.vendingMachineBlocker = this.blank_blockers
       .create(1533, 920, 'blank_blockers')
       .setScale(3.18, 1)
+      .refreshBody();
+    this.truckBlocker = this.blank_blockers
+      .create(2076, 273, 'blank_blockers')
+      .setScale(5.16, 1)
       .refreshBody();
 
     // Background Items
@@ -62,6 +74,17 @@ export default class Level1Scene extends Phaser.Scene {
     this.vendingMachine2 = this.physics.add.image(1533, 920, 'vendingMachine2');
     this.vendingMachine2.setImmovable(true);
 
+    this.truck2 = this.physics.add.image(2076, 299, 'truck2');
+    this.truck2.setImmovable(true);
+
+    this.barrelShadow = this.physics.add.image(260, 180, 'barrelShadow');
+    this.barrelShadow.setImmovable(true);
+
+    this.barrels = this.physics.add.image(281, 69, 'barrels');
+    this.barrels.setImmovable(true);
+
+    this.floatWood = this.physics.add.sprite(1280, 676, 'float-wood');
+
     // Player
     this.player = this.physics.add.sprite(400, 300, 'revolver-left');
     this.player.setCollideWorldBounds(true);
@@ -69,9 +92,13 @@ export default class Level1Scene extends Phaser.Scene {
     this.vendingMachine1 = this.physics.add.image(1533, 920, 'vendingMachine1');
     this.vendingMachine1.setImmovable(true);
 
+    this.truck1 = this.physics.add.image(2076, 299, 'truck1');
+    this.truck1.setImmovable(true);
+
     // Player collide with background items
     this.physics.add.collider(this.player, this.pond);
     this.physics.add.collider(this.player, this.blank_blockers);
+    this.physics.add.collider(this.player, this.barrels);
 
     // // Platforms
     // this.platforms = this.physics.add.staticGroup();
@@ -97,7 +124,7 @@ export default class Level1Scene extends Phaser.Scene {
 
     // Animations
     createPlayerAnims(this.anims);
-
+    createBackgroundAnims(this.anims);
     // // Stars
     // this.stars = this.physics.add.group({
     //   key: 'star',
@@ -141,6 +168,9 @@ export default class Level1Scene extends Phaser.Scene {
   }
 
   update() {
+    // Background animations
+    this.floatWood.play('float_wood', true);
+
     // Player movement | default movement speed = 120
     this.player.setVelocity(0);
 

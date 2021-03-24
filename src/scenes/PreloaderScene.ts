@@ -13,6 +13,19 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image('blank_blockers', 'assets/img/blank_square.png');
     this.load.image('vendingMachine1', 'assets/img/vendingMachine1.png');
     this.load.image('vendingMachine2', 'assets/img/vendingMachine2.png');
+    this.load.image('truck1', 'assets/img/truck1.png');
+    this.load.image('truck2', 'assets/img/truck2.png');
+    this.load.image('barrels', 'assets/img/barrels.png');
+    this.load.image('barrelShadow', 'assets/img/barrelShadow.png');
+    this.load.image('vignetting', 'assets/img/UI/vignetting.png');
+
+    // load background animations
+     this.load.atlas(
+       'float_wood',
+       'assets/img/floatWood/float_wood.png',
+       'assets/img/floatWood/float_wood.json'
+     );
+
 
     // load Player with default revolver image & animation
     this.load.atlas(
@@ -20,6 +33,7 @@ export default class PreloaderScene extends Phaser.Scene {
       'assets/img/player/revolver_left/revolver_left_walk.png',
       'assets/img/player/revolver_left/revolver_left_walk.json'
     );
+
     // this.load.image('ground', 'assets/img/platform.png');
     // this.load.image('star', 'assets/img/star.png');
     // this.load.image('bomb', 'assets/img/bomb.png');

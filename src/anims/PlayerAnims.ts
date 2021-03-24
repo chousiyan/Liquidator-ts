@@ -32,7 +32,6 @@ export default function createPlayerAnims(anims) {
     repeat: -1,
   });
 
-
   anims.create({
     key: 'right',
     frames: anims.generateFrameNames('revolver-left', {
@@ -46,31 +45,31 @@ export default function createPlayerAnims(anims) {
     repeat: -1,
   });
 
-   anims.create({
-     key: 'up',
-     frames: anims.generateFrameNames('revolver-left', {
-       start: 0,
-       end: 11,
-       zeroPad: 2,
-       prefix: 'revolver_left_walk_',
-       suffix: '',
-     }),
-     frameRate: 25,
-     repeat: -1,
-   });
+  anims.create({
+    key: 'up',
+    frames: anims.generateFrameNames('revolver-left', {
+      start: 0,
+      end: 11,
+      zeroPad: 2,
+      prefix: 'revolver_left_walk_',
+      suffix: '',
+    }),
+    frameRate: 25,
+    repeat: -1,
+  });
 
-    anims.create({
-      key: 'down',
-      frames: anims.generateFrameNames('revolver-left', {
-        start: 0,
-        end: 11,
-        zeroPad: 2,
-        prefix: 'revolver_left_walk_',
-        suffix: '',
-      }),
-      frameRate: 25,
-      repeat: -1,
-    });
+  anims.create({
+    key: 'down',
+    frames: anims.generateFrameNames('revolver-left', {
+      start: 0,
+      end: 11,
+      zeroPad: 2,
+      prefix: 'revolver_left_walk_',
+      suffix: '',
+    }),
+    frameRate: 25,
+    repeat: -1,
+  });
 
   // anims.create({
   //   key: 'right',
