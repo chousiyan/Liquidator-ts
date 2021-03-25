@@ -5,12 +5,12 @@
 			"format": "RGBA8888",
 			"size": {
 				"w": 66,
-				"h": 705
+				"h": 707
 			},
 			"scale": 1,
 			"frames": [
 				{
-					"filename": "revolver_left_walk_00",
+					"filename": "revolver_left_walk_00.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -31,7 +31,7 @@
 					}
 				},
 				{
-					"filename": "revolver_left_walk_01",
+					"filename": "revolver_left_walk_01.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -52,7 +52,7 @@
 					}
 				},
 				{
-					"filename": "revolver_left_walk_02",
+					"filename": "revolver_left_walk_02.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -73,7 +73,7 @@
 					}
 				},
 				{
-					"filename": "revolver_left_walk_07",
+					"filename": "revolver_left_walk_06.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -94,7 +94,7 @@
 					}
 				},
 				{
-					"filename": "revolver_left_walk_08",
+					"filename": "revolver_left_walk_07.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -115,49 +115,49 @@
 					}
 				},
 				{
-					"filename": "revolver_left_walk_03",
+					"filename": "revolver_left_walk_08.png",
 					"rotated": false,
-					"trimmed": true,
+					"trimmed": false,
 					"sourceSize": {
 						"w": 66,
 						"h": 101
 					},
 					"spriteSourceSize": {
 						"x": 0,
-						"y": 1,
+						"y": 0,
 						"w": 66,
-						"h": 100
+						"h": 101
 					},
 					"frame": {
 						"x": 0,
 						"y": 505,
 						"w": 66,
-						"h": 100
+						"h": 101
 					}
 				},
 				{
-					"filename": "revolver_left_walk_09",
+					"filename": "revolver_left_walk_09.png",
 					"rotated": false,
-					"trimmed": true,
+					"trimmed": false,
 					"sourceSize": {
 						"w": 66,
 						"h": 101
 					},
 					"spriteSourceSize": {
 						"x": 0,
-						"y": 1,
+						"y": 0,
 						"w": 66,
-						"h": 100
+						"h": 101
 					},
 					"frame": {
 						"x": 0,
-						"y": 605,
+						"y": 606,
 						"w": 66,
-						"h": 100
+						"h": 101
 					}
 				},
 				{
-					"filename": "revolver_left_walk_06",
+					"filename": "revolver_left_walk_05.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -178,7 +178,7 @@
 					}
 				},
 				{
-					"filename": "revolver_left_walk_05",
+					"filename": "revolver_left_walk_04.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -199,7 +199,7 @@
 					}
 				},
 				{
-					"filename": "revolver_left_walk_04",
+					"filename": "revolver_left_walk_03.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -215,48 +215,6 @@
 					"frame": {
 						"x": 0,
 						"y": 202,
-						"w": 66,
-						"h": 101
-					}
-				},
-				{
-					"filename": "revolver_left_walk_11",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 66,
-						"h": 101
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 66,
-						"h": 101
-					},
-					"frame": {
-						"x": 0,
-						"y": 303,
-						"w": 66,
-						"h": 101
-					}
-				},
-				{
-					"filename": "revolver_left_walk_10",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 66,
-						"h": 101
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 66,
-						"h": 101
-					},
-					"frame": {
-						"x": 0,
-						"y": 404,
 						"w": 66,
 						"h": 101
 					}

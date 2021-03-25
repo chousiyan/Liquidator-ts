@@ -17,6 +17,9 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image('truck2', 'assets/img/truck2.png');
     this.load.image('barrels', 'assets/img/barrels.png');
     this.load.image('barrelShadow', 'assets/img/barrelShadow.png');
+    this.load.image('bullet', 'assets/img/bullet.png');
+
+    // load UI images
     this.load.image('vignetting', 'assets/img/UI/vignetting.png');
 
     // load background animations

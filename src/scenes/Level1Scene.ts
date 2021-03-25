@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { WeaponPlugin } from 'phaser3-weapon-plugin';
 
 import createPlayerAnims from '../anims/PlayerAnims';
 import createBackgroundAnims from '../anims/BackgroundAnims';
@@ -7,6 +8,10 @@ export default class Level1Scene extends Phaser.Scene {
   player;
   playerSpeed = 600;
   // Default speed = 120
+
+  mouse;
+  mouseInput;
+
   pond;
   signs;
   blank_blockers;
@@ -19,6 +24,20 @@ export default class Level1Scene extends Phaser.Scene {
   barrels;
   barrelShadow;
   floatWood;
+
+  bullet;
+
+  // control firing rate
+  shootControl = false;
+
+  // Weapon types
+  // 1 = revolver, 2 = hand gun, 3 = shot gun, 4 = machine gun
+  weaponType = 1;
+  // isRevolver = true;
+  // isHandGun = false;
+  // isShotGun = false;
+  // isMachineGun = false;
+
   cursors: Phaser.Types.Input.Keyboard.CursorKeys;
   // platforms;
   // stars;
@@ -34,6 +53,14 @@ export default class Level1Scene extends Phaser.Scene {
   preload() {}
 
   create() {
+    // Install weapon plugin into a scene
+    this.plugins.installScenePlugin(
+      'WeaponPlugin',
+      WeaponPlugin,
+      'weapons',
+      this
+    );
+
     //  Set the camera and physics bounds to be the size of 4x4 bg images
     this.cameras.main.setBounds(0, 0, 2308, 1478);
     this.physics.world.setBounds(0, 0, 2308, 1478);
@@ -100,15 +127,6 @@ export default class Level1Scene extends Phaser.Scene {
     this.physics.add.collider(this.player, this.blank_blockers);
     this.physics.add.collider(this.player, this.barrels);
 
-    // // Platforms
-    // this.platforms = this.physics.add.staticGroup();
-
-    // this.platforms.create(400, 568, 'ground').setScale(2).refreshBody();
-
-    // this.platforms.create(600, 400, 'ground');
-    // this.platforms.create(50, 250, 'ground');
-    // this.platforms.create(750, 220, 'ground');
-
     // Set camera to follow the player
     this.cameras.main.startFollow(this.player, true, 0.05, 0.05);
 
@@ -125,19 +143,53 @@ export default class Level1Scene extends Phaser.Scene {
     // Animations
     createPlayerAnims(this.anims);
     createBackgroundAnims(this.anims);
-    // // Stars
-    // this.stars = this.physics.add.group({
-    //   key: 'star',
-    //   repeat: 11,
-    //   setXY: { x: 12, y: 0, stepX: 70 },
-    // });
+
+    //for mouse position
+    this.mouseInput = this.input;
+
+    //for mouse click event
+    this.mouse = this.input.mousePointer;
+
+    // // fire bullet
+    // this.bullet = this.physics.add.image(960, 540, 'bullet');
+
+    //  Creates 30 bullets, using the 'bullet' graphic
+    this.weapon = this.add.weapon(30, 'bullet');
+
+    // Enable physics debugging for the bullets
+    this.weapon.debugPhysics = true;
+
+    //  The bullet will be automatically killed when it leaves the world bounds
+    console.log(`setting bulletKillType`);
+    // console.log(consts);
+
+    // this.weapon.bulletKillType = WeaponPlugin.consts.KillType.KILL_WORLD_BOUNDS;
+
+    //  Because our bullet is drawn facing up, we need to offset its rotation:
+    this.weapon.bulletAngleOffset = 90;
+
+    //  The speed at which the bullet is fired
+    this.weapon.bulletSpeed = 500;
+
+    //  Speed-up the rate of fire, allowing them to shoot 1 bullet every 60ms
+    this.weapon.fireRate = 100;
+
+    //  Tell the Weapon to track the 'player' Sprite
+    this.weapon.trackSprite(this.player);
+
+    //  Add a variance to the bullet angle by +- this value
+    this.weapon.bulletAngleVariance = 2;
+
+    // this.sprite = this.add.sprite(320, 500, 'ship');
+
+    // this.physics.add.existing(this.sprite);
+
+    // this.sprite.body.setDrag(70);
+    // this.sprite.body.maxVelocity.set(200);
 
     // this.stars.children.iterate(function (child) {
     //   child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
     // });
-
-    // // let Star collide with platforms
-    // this.physics.add.collider(this.stars, this.platforms);
 
     // this.physics.add.overlap(
     //   this.player,
@@ -152,19 +204,6 @@ export default class Level1Scene extends Phaser.Scene {
     //   fontSize: '32px',
     //   fill: '#000',
     // });
-
-    // // Bombs
-    // this.bombs = this.physics.add.group();
-
-    // this.physics.add.collider(this.bombs, this.platforms);
-
-    // this.physics.add.collider(
-    //   this.player,
-    //   this.bombs,
-    //   this.hitBomb,
-    //   null,
-    //   this
-    // );
   }
 
   update() {
@@ -201,6 +240,13 @@ export default class Level1Scene extends Phaser.Scene {
       !this.cursors.down.isDown
     ) {
       this.player.play('turn');
+    }
+
+    //mouse clicked
+    if (this.mouse.isDown) {
+      // this.firingRate();
+      // this.weapon.fire();
+      this.weapon.fireAtPointer();
     }
 
     // if (this.cursors.up.isDown && this.player.body.touching.down) {
