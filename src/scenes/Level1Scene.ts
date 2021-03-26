@@ -6,8 +6,8 @@ import createBackgroundAnims from '../anims/BackgroundAnims';
 
 export default class Level1Scene extends Phaser.Scene {
   player;
-  playerSpeed = 600;
   // Default speed = 120
+  playerSpeed = 120;
 
   mouse;
   mouseInput;
@@ -137,8 +137,14 @@ export default class Level1Scene extends Phaser.Scene {
     // this.player.setCollideWorldBounds(true);
     // this.physics.add.collider(this.player, this.platforms);
 
-    // Input Events
-    this.cursors = this.input.keyboard.createCursorKeys();
+    // Input Events, replaced arrows with W/A/S/D
+    // this.cursors = this.input.keyboard.createCursorKeys();
+    this.cursors = this.input.keyboard.addKeys({
+      up: Phaser.Input.Keyboard.KeyCodes.W,
+      down: Phaser.Input.Keyboard.KeyCodes.S,
+      left: Phaser.Input.Keyboard.KeyCodes.A,
+      right: Phaser.Input.Keyboard.KeyCodes.D,
+    });
 
     // Animations
     createPlayerAnims(this.anims);
@@ -159,33 +165,21 @@ export default class Level1Scene extends Phaser.Scene {
     // Enable physics debugging for the bullets
     this.weapon.debugPhysics = true;
 
-    //  The bullet will be automatically killed when it leaves the world bounds
-    console.log(`setting bulletKillType`);
-    // console.log(consts);
-
+    //  The bullet will be automatically killed when it leaves the world bounds by default
     // this.weapon.bulletKillType = WeaponPlugin.consts.KillType.KILL_WORLD_BOUNDS;
 
-    //  Because our bullet is drawn facing up, we need to offset its rotation:
-    this.weapon.bulletAngleOffset = 90;
-
     //  The speed at which the bullet is fired
-    this.weapon.bulletSpeed = 500;
+    // Revolver at 800
+    this.weapon.bulletSpeed = 800;
 
-    //  Speed-up the rate of fire, allowing them to shoot 1 bullet every 60ms
-    this.weapon.fireRate = 100;
+    //  Speed-up the rate of fire, allowing them to shoot 1 bullet every 800ms
+    this.weapon.fireRate = 800;
 
     //  Tell the Weapon to track the 'player' Sprite
     this.weapon.trackSprite(this.player);
 
     //  Add a variance to the bullet angle by +- this value
     this.weapon.bulletAngleVariance = 2;
-
-    // this.sprite = this.add.sprite(320, 500, 'ship');
-
-    // this.physics.add.existing(this.sprite);
-
-    // this.sprite.body.setDrag(70);
-    // this.sprite.body.maxVelocity.set(200);
 
     // this.stars.children.iterate(function (child) {
     //   child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
@@ -243,9 +237,18 @@ export default class Level1Scene extends Phaser.Scene {
     }
 
     //mouse clicked
+    let shootAngle = Phaser.Math.Angle.Between(
+      this.player.x,
+      this.player.y,
+      this.mouseInput.x,
+      this.mouseInput.y
+    );
+
     if (this.mouse.isDown) {
-      // this.firingRate();
-      // this.weapon.fire();
+      //  Because our bullet is drawn facing up, we need to offset its rotation:
+      this.weapon.bulletAngleOffset = shootAngle + 180;
+      console.log(shootAngle);
+
       this.weapon.fireAtPointer();
     }
 
