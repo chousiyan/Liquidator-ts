@@ -1,0 +1,397 @@
+{
+	"textures": [
+		{
+			"image": "back_left_idle.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 66,
+				"h": 1004
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "back_left_idle_00.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					}
+				},
+				{
+					"filename": "back_left_idle_01.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 101,
+						"w": 66,
+						"h": 101
+					}
+				},
+				{
+					"filename": "back_left_idle_02.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 202,
+						"w": 66,
+						"h": 101
+					}
+				},
+				{
+					"filename": "back_left_idle_08.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 303,
+						"w": 66,
+						"h": 101
+					}
+				},
+				{
+					"filename": "back_left_idle_09.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 404,
+						"w": 66,
+						"h": 101
+					}
+				},
+				{
+					"filename": "back_left_idle_03.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 66,
+						"h": 100
+					},
+					"frame": {
+						"x": 0,
+						"y": 505,
+						"w": 66,
+						"h": 100
+					}
+				},
+				{
+					"filename": "back_left_idle_04.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 66,
+						"h": 100
+					},
+					"frame": {
+						"x": 0,
+						"y": 605,
+						"w": 66,
+						"h": 100
+					}
+				},
+				{
+					"filename": "back_left_idle_06.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 66,
+						"h": 100
+					},
+					"frame": {
+						"x": 0,
+						"y": 705,
+						"w": 66,
+						"h": 100
+					}
+				},
+				{
+					"filename": "back_left_idle_07.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 66,
+						"h": 100
+					},
+					"frame": {
+						"x": 0,
+						"y": 805,
+						"w": 66,
+						"h": 100
+					}
+				},
+				{
+					"filename": "back_left_idle_05.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 2,
+						"w": 66,
+						"h": 99
+					},
+					"frame": {
+						"x": 0,
+						"y": 905,
+						"w": 66,
+						"h": 99
+					}
+				},
+				{
+					"filename": "back_left_idle_10.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					}
+				},
+				{
+					"filename": "back_left_idle_11.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					}
+				},
+				{
+					"filename": "back_left_idle_12.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					}
+				},
+				{
+					"filename": "back_left_idle_13.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					}
+				},
+				{
+					"filename": "back_left_idle_14.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					}
+				},
+				{
+					"filename": "back_left_idle_15.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					}
+				},
+				{
+					"filename": "back_left_idle_16.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					}
+				},
+				{
+					"filename": "back_left_idle_17.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 101
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 101
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.6"
+	}
+}

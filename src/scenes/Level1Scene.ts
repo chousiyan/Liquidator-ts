@@ -8,6 +8,11 @@ export default class Level1Scene extends Phaser.Scene {
   player;
   // Default speed = 120
   playerSpeed = 120;
+  playerFacingDirection:
+    | 'back left'
+    | 'back right'
+    | 'front left'
+    | 'front right';
 
   mouse;
   mouseInput;
@@ -204,37 +209,60 @@ export default class Level1Scene extends Phaser.Scene {
     // Background animations
     this.floatWood.play('float_wood', true);
 
-    // Player movement | default movement speed = 120
-    this.player.setVelocity(0);
+    // Player movement
+    // Player facing direction based on mouse position
+    this.checkFacingDirection();
 
-    if (this.cursors.left.isDown) {
-      this.player.setVelocityX(-this.playerSpeed);
-
-      this.player.play('left', true);
-    } else if (this.cursors.right.isDown) {
-      this.player.setVelocityX(this.playerSpeed);
-
-      this.player.play('right', true);
-    }
-
-    if (this.cursors.up.isDown) {
-      this.player.setVelocityY(-this.playerSpeed);
-
-      this.player.play('up', true);
-    } else if (this.cursors.down.isDown) {
-      this.player.setVelocityY(this.playerSpeed);
-
-      this.player.play('down', true);
-    }
-
+    // Player movement
+    // idle
     if (
       !this.cursors.left.isDown &&
       !this.cursors.right.isDown &&
       !this.cursors.up.isDown &&
       !this.cursors.down.isDown
     ) {
-      this.player.play('turn');
+      this.player.setVelocity(0);
+      this.revolverIdle();
     }
+
+    // walk
+    if (this.cursors.left.isDown) {
+      this.player.setVelocityX(-this.playerSpeed);
+      this.revolverWalk();
+    } else if (this.cursors.right.isDown) {
+      this.player.setVelocityX(this.playerSpeed);
+      this.revolverWalk();
+    }
+
+    if (this.cursors.up.isDown) {
+      this.player.setVelocityY(-this.playerSpeed);
+      this.revolverWalk();
+    } else if (this.cursors.down.isDown) {
+      this.player.setVelocityY(this.playerSpeed);
+      this.revolverWalk();
+    }
+
+    // this.player.setVelocity(0);
+
+    // if (this.cursors.left.isDown) {
+    //   this.player.setVelocityX(-this.playerSpeed);
+
+    //   this.player.play('left', true);
+    // } else if (this.cursors.right.isDown) {
+    //   this.player.setVelocityX(this.playerSpeed);
+
+    //   this.player.play('right', true);
+    // }
+
+    // if (this.cursors.up.isDown) {
+    //   this.player.setVelocityY(-this.playerSpeed);
+
+    //   this.player.play('up', true);
+    // } else if (this.cursors.down.isDown) {
+    //   this.player.setVelocityY(this.playerSpeed);
+
+    //   this.player.play('down', true);
+    // }
 
     //mouse clicked
     let shootAngle = Phaser.Math.Angle.Between(
@@ -247,14 +275,94 @@ export default class Level1Scene extends Phaser.Scene {
     if (this.mouse.isDown) {
       //  Because our bullet is drawn facing up, we need to offset its rotation:
       this.weapon.bulletAngleOffset = shootAngle + 180;
-      console.log(shootAngle);
-
       this.weapon.fireAtPointer();
     }
 
     // if (this.cursors.up.isDown && this.player.body.touching.down) {
     //   this.player.setVelocityY(-330);
     // }
+  }
+
+  checkFacingDirection() {
+    // facing back
+    if (this.mouseInput.y < this.player.y) {
+      if (this.mouseInput.x <= this.player.x) {
+        this.playerFacingDirection = 'back left';
+      } else {
+        this.playerFacingDirection = 'back right';
+      }
+    }
+
+    // facing front
+    if (this.mouseInput.y >= this.player.y) {
+      if (this.mouseInput.x <= this.player.x) {
+        this.playerFacingDirection = 'front left';
+      } else {
+        this.playerFacingDirection = 'front right';
+      }
+    }
+  }
+
+  // revolver idle animation
+  revolverIdle() {
+    switch (this.playerFacingDirection) {
+      case 'back left': {
+        this.player.play('back-left-idle', true);
+        this.player.flipX = false;
+        break;
+      }
+      case 'back right': {
+        this.player.play('back-left-idle', true);
+        this.player.flipX = true;
+        break;
+      }
+      case 'front left': {
+        this.player.play('revolver-left-idle', true);
+        this.player.flipX = false;
+        break;
+      }
+      case 'front right': {
+        this.player.play('revolver-left-idle', true);
+        this.player.flipX = true;
+        break;
+      }
+      default: {
+        this.player.play('revolver-left-idle', true);
+        this.player.flipX = false;
+        break;
+      }
+    }
+  }
+
+  // revolver walking animation
+  revolverWalk() {
+    switch (this.playerFacingDirection) {
+      case 'back left': {
+        this.player.play('back-left-walk', true);
+        this.player.flipX = false;
+        break;
+      }
+      case 'back right': {
+        this.player.play('back-left-walk', true);
+        this.player.flipX = true;
+        break;
+      }
+      case 'front left': {
+        this.player.play('revolver-left-walk', true);
+        this.player.flipX = false;
+        break;
+      }
+      case 'front right': {
+        this.player.play('revolver-left-walk', true);
+        this.player.flipX = true;
+        break;
+      }
+      default: {
+        this.player.play('revolver-left-walk', true);
+        this.player.flipX = false;
+        break;
+      }
+    }
   }
 
   // check overlaps between player and stars

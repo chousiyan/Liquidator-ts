@@ -23,18 +23,36 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image('vignetting', 'assets/img/UI/vignetting.png');
 
     // load background animations
-     this.load.atlas(
-       'float_wood',
-       'assets/img/floatWood/float_wood.png',
-       'assets/img/floatWood/float_wood.json'
-     );
-
+    this.load.atlas(
+      'float_wood',
+      'assets/img/floatWood/float_wood.png',
+      'assets/img/floatWood/float_wood.json'
+    );
 
     // load Player with default revolver image & animation
     this.load.atlas(
-      'revolver-left',
-      'assets/img/player/revolver_left/revolver_left_walk.png',
-      'assets/img/player/revolver_left/revolver_left_walk.json'
+      'back-left-idle',
+      'assets/img/player/back_left_idle.png',
+      'assets/img/player/back_left_idle.json'
+    );
+
+    this.load.atlas(
+      'back-left-walk',
+      'assets/img/player/back_left_walk.png',
+      'assets/img/player/back_left_walk.json'
+    );
+
+    // Revolver
+    this.load.atlas(
+      'revolver-front-left-idle',
+      'assets/img/player/revolver/revolver_front_left_idle.png',
+      'assets/img/player/revolver/revolver_front_left_idle.json'
+    );
+
+    this.load.atlas(
+      'revolver-front-left-walk',
+      'assets/img/player/revolver/revolver_front_left_walk.png',
+      'assets/img/player/revolver/revolver_front_left_walk.json'
     );
 
     // this.load.image('ground', 'assets/img/platform.png');
