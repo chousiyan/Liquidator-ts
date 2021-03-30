@@ -7,7 +7,7 @@ import createBackgroundAnims from '../anims/BackgroundAnims';
 export default class Level1Scene extends Phaser.Scene {
   player;
   // Default speed = 120
-  playerSpeed = 120;
+  playerSpeed = 600;
   playerFacingDirection:
     | 'back left'
     | 'back right'
@@ -66,6 +66,10 @@ export default class Level1Scene extends Phaser.Scene {
       this
     );
 
+    // Animations
+    createPlayerAnims(this.anims);
+    createBackgroundAnims(this.anims);
+
     //  Set the camera and physics bounds to be the size of 4x4 bg images
     this.cameras.main.setBounds(0, 0, 2308, 1478);
     this.physics.world.setBounds(0, 0, 2308, 1478);
@@ -100,6 +104,9 @@ export default class Level1Scene extends Phaser.Scene {
       .refreshBody();
 
     // Background Items
+    // Grass
+    this.createGrass();
+
     this.signs = this.physics.add.image(673, 571, 'signs');
     this.signs.setImmovable(true);
 
@@ -117,9 +124,14 @@ export default class Level1Scene extends Phaser.Scene {
 
     this.floatWood = this.physics.add.sprite(1280, 676, 'float-wood');
 
+    // this.grassGroup.create(400, 568, 'ground').setScale(2).refreshBody();
+
     // Player
     this.player = this.physics.add.sprite(400, 300, 'revolver-left');
     this.player.setCollideWorldBounds(true);
+    this.player.body.setSize(this.player.width * 2.1, this.player.height * 3.1);
+    this.player.body.offset.x = 0;
+    this.player.body.offset.y = 2;
 
     this.vendingMachine1 = this.physics.add.image(1533, 920, 'vendingMachine1');
     this.vendingMachine1.setImmovable(true);
@@ -150,10 +162,6 @@ export default class Level1Scene extends Phaser.Scene {
       left: Phaser.Input.Keyboard.KeyCodes.A,
       right: Phaser.Input.Keyboard.KeyCodes.D,
     });
-
-    // Animations
-    createPlayerAnims(this.anims);
-    createBackgroundAnims(this.anims);
 
     //for mouse position
     this.mouseInput = this.input;
@@ -362,6 +370,157 @@ export default class Level1Scene extends Phaser.Scene {
         this.player.flipX = false;
         break;
       }
+    }
+  }
+
+  createGrass() {
+    const darkGrass_1 = {
+      key: 'grass_dark',
+      frame: 'grass_dark_00.png',
+      x: { randInt: [0, 700] },
+      y: { randInt: [0, 1478] },
+      scale: { randFloat: [0.4, 0.8] },
+      alpha: { randFloat: [0.4, 1] },
+      anims: {
+        key: 'grass_dark',
+        repeat: -1,
+        repeatDelay: { randInt: [500, 2000] },
+        delayedPlay: function () {
+          return Math.random() * 1000;
+        },
+      },
+    };
+
+    const lightGrass_1 = {
+      key: 'grass_light',
+      frame: 'grass_light_00.png',
+      x: { randInt: [0, 700] },
+      y: { randInt: [0, 1478] },
+      scale: { randFloat: [0.4, 0.8] },
+      alpha: { randFloat: [0.4, 1] },
+      anims: {
+        key: 'grass_light',
+        repeat: -1,
+        repeatDelay: { randInt: [500, 2000] },
+        delayedPlay: function () {
+          return Math.random() * 1000;
+        },
+      },
+    };
+
+    const darkGrass_2 = {
+      key: 'grass_dark',
+      frame: 'grass_dark_00.png',
+      x: { randInt: [700, 1426] },
+      y: { randInt: [0, 460] },
+      scale: { randFloat: [0.4, 0.8] },
+      alpha: { randFloat: [0.4, 1] },
+      anims: {
+        key: 'grass_dark',
+        repeat: -1,
+        repeatDelay: { randInt: [500, 2000] },
+        delayedPlay: function () {
+          return Math.random() * 1000;
+        },
+      },
+    };
+
+    const lightGrass_2 = {
+      key: 'grass_light',
+      frame: 'grass_light_00.png',
+      x: { randInt: [700, 1426] },
+      y: { randInt: [0, 460] },
+      scale: { randFloat: [0.4, 0.8] },
+      alpha: { randFloat: [0.4, 1] },
+      anims: {
+        key: 'grass_light',
+        repeat: -1,
+        repeatDelay: { randInt: [500, 2000] },
+        delayedPlay: function () {
+          return Math.random() * 1000;
+        },
+      },
+    };
+
+    const darkGrass_3 = {
+      key: 'grass_dark',
+      frame: 'grass_dark_00.png',
+      x: { randInt: [700, 1426] },
+      y: { randInt: [996, 1478] },
+      scale: { randFloat: [0.4, 0.8] },
+      alpha: { randFloat: [0.4, 1] },
+      anims: {
+        key: 'grass_dark',
+        repeat: -1,
+        repeatDelay: { randInt: [500, 2000] },
+        delayedPlay: function () {
+          return Math.random() * 1000;
+        },
+      },
+    };
+
+    const lightGrass_3 = {
+      key: 'grass_light',
+      frame: 'grass_light_00.png',
+      x: { randInt: [700, 1426] },
+      y: { randInt: [996, 1478] },
+      scale: { randFloat: [0.4, 0.8] },
+      alpha: { randFloat: [0.4, 1] },
+      anims: {
+        key: 'grass_light',
+        repeat: -1,
+        repeatDelay: { randInt: [500, 2000] },
+        delayedPlay: function () {
+          return Math.random() * 1000;
+        },
+      },
+    };
+
+    const darkGrass_4 = {
+      key: 'grass_dark',
+      frame: 'grass_dark_00.png',
+      x: { randInt: [1526, 2308] },
+      y: { randInt: [0, 1478] },
+      scale: { randFloat: [0.4, 0.8] },
+      alpha: { randFloat: [0.4, 1] },
+      anims: {
+        key: 'grass_dark',
+        repeat: -1,
+        repeatDelay: { randInt: [500, 2000] },
+        delayedPlay: function () {
+          return Math.random() * 1000;
+        },
+      },
+    };
+
+    const lightGrass_4 = {
+      key: 'grass_light',
+      frame: 'grass_light_00.png',
+      x: { randInt: [1526, 2308] },
+      y: { randInt: [0, 1478] },
+      scale: { randFloat: [0.4, 0.8] },
+      alpha: { randFloat: [0.4, 1] },
+      anims: {
+        key: 'grass_light',
+        repeat: -1,
+        repeatDelay: { randInt: [500, 2000] },
+        delayedPlay: function () {
+          return Math.random() * 1000;
+        },
+      },
+    };
+    // Make a few sprites using the config above
+    for (let i = 0; i < 5; i++) {
+      this.make.sprite(darkGrass_1);
+      this.make.sprite(lightGrass_1);
+      this.make.sprite(darkGrass_4);
+      this.make.sprite(lightGrass_4);
+    }
+    for (let i = 0; i < 3; i++) {
+      this.make.sprite(darkGrass_2);
+      this.make.sprite(lightGrass_2);
+      this.make.sprite(darkGrass_3);
+      this.make.sprite(lightGrass_3);
     }
   }
 

@@ -29,6 +29,18 @@ export default class PreloaderScene extends Phaser.Scene {
       'assets/img/floatWood/float_wood.json'
     );
 
+    this.load.atlas(
+      'grass_dark',
+      'assets/img/grass_dark.png',
+      'assets/img/grass_dark.json'
+    );
+
+    this.load.atlas(
+      'grass_light',
+      'assets/img/grass_light.png',
+      'assets/img/grass_light.json'
+    );
+
     // load Player with default revolver image & animation
     this.load.atlas(
       'back-left-idle',
