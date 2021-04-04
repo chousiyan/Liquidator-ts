@@ -207,9 +207,10 @@ export default class Level1Scene extends Phaser.Scene {
     // );
 
     // // Score
-    // this.scoreText = this.add.text(16, 16, 'Score: 0', {
+    // let scoreText = this.add.text(16, 16, 'Score: 0', {
     //   fontSize: '32px',
     //   fill: '#000',
+    //   fontFamily: 'Staatliches',
     // });
   }
 
@@ -249,28 +250,6 @@ export default class Level1Scene extends Phaser.Scene {
       this.player.setVelocityY(this.playerSpeed);
       this.revolverWalk();
     }
-
-    // this.player.setVelocity(0);
-
-    // if (this.cursors.left.isDown) {
-    //   this.player.setVelocityX(-this.playerSpeed);
-
-    //   this.player.play('left', true);
-    // } else if (this.cursors.right.isDown) {
-    //   this.player.setVelocityX(this.playerSpeed);
-
-    //   this.player.play('right', true);
-    // }
-
-    // if (this.cursors.up.isDown) {
-    //   this.player.setVelocityY(-this.playerSpeed);
-
-    //   this.player.play('up', true);
-    // } else if (this.cursors.down.isDown) {
-    //   this.player.setVelocityY(this.playerSpeed);
-
-    //   this.player.play('down', true);
-    // }
 
     //mouse clicked
     let shootAngle = Phaser.Math.Angle.Between(
@@ -479,7 +458,7 @@ export default class Level1Scene extends Phaser.Scene {
     const darkGrass_4 = {
       key: 'grass_dark',
       frame: 'grass_dark_00.png',
-      x: { randInt: [1526, 2308] },
+      x: { randInt: [1600, 2308] },
       y: { randInt: [0, 1478] },
       scale: { randFloat: [0.4, 0.8] },
       alpha: { randFloat: [0.4, 1] },
@@ -496,7 +475,7 @@ export default class Level1Scene extends Phaser.Scene {
     const lightGrass_4 = {
       key: 'grass_light',
       frame: 'grass_light_00.png',
-      x: { randInt: [1526, 2308] },
+      x: { randInt: [1600, 2308] },
       y: { randInt: [0, 1478] },
       scale: { randFloat: [0.4, 0.8] },
       alpha: { randFloat: [0.4, 1] },
