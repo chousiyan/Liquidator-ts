@@ -1,5 +1,5 @@
 {
-  "name": "week-09",
+  "name": "liquidator",
   "version": "1.0.0",
   "description": "",
   "main": "src/game.ts",
@@ -10,6 +10,12 @@
     "lint:fix": "npm run lint -- --fix",
     "test": "npm run lint"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iit-id/dungeon-crawler.git"
+  },
+  "keywords": [],
+  "author": "Siyan Zhou <chousiyan0109@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.10.5",
