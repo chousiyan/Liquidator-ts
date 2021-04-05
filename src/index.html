@@ -5,9 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liquidator</title>
+
+    <style>
+        @font-face {
+            font-family: Staatliches;
+            src: url('assets/Staatliches-Regular.ttf');
+        }
+
+        .fontPreload {
+            font-family: Staatliches;
+            position: absolute;
+            left: -100px;
+        }
+    </style>
+    <!-- <link rel="preload" as="font" href="assets/Staatliches-Regular.ttf" type="font/ttf" crossorigin /> -->
+
 </head>
 <body>
-
+    <div class="fontPreload">.</div>
     <script src="./main.ts"></script>
 </body>
 </html>

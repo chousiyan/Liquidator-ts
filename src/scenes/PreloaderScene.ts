@@ -22,6 +22,7 @@ export default class PreloaderScene extends Phaser.Scene {
     // load UI images
     this.load.image('vignetting', 'assets/img/UI/vignetting.png');
     this.load.image('ammoIcon', 'assets/img/UI/ammo_icon.png');
+    this.load.image('rtIcon', 'assets/img/UI/rt_icon.png');
 
     // load background animations
     this.load.atlas(

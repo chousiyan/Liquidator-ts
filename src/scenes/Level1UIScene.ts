@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import Level1Scene from './scenes/Level1Scene';
+// import Level1Scene from './scenes/Level1Scene';
 
 // class AmmoBar {
 //   bar: Phaser.GameObjects.Graphics;
@@ -54,6 +54,13 @@ export default class Level1UIScene extends Phaser.Scene {
   lights;
   vignetting;
 
+  ammoBar;
+  ammoText;
+  weaponLevel;
+
+  rt;
+  rtBar: Phaser.GameObjects.Graphics;
+
   constructor() {
     super('UI');
   }
@@ -67,27 +74,46 @@ export default class Level1UIScene extends Phaser.Scene {
     this.input.setDefaultCursor('url(assets/img/UI/aim.png), pointer');
 
     // Make ammo bar
-    let ammoBar = this.makeBar(850, 936, 280, 46, 6, 0xb8d1c3, 0x74a59b);
-    this.setValue(ammoBar, 100);
+    this.makeBarBackground(850, 936, 280, 46, 6, 0xb8d1c3, 8);
+    this.ammoBar = this.makeBar(850, 936, 280, 46, 6, 0x74a59b, 8);
+    this.setValue(this.ammoBar, 850, 936, 280, 46, 6, 0x74a59b, 8, 1);
     let ammoIcon = this.physics.add.image(820, 966, 'ammoIcon');
     ammoIcon.scale = 0.7;
+
+    this.ammoText = this.add.text(880, 886, 'REVOLVER', {
+      fontFamily: 'Staatliches',
+      fontSize: '40px',
+      align: 'center',
+    });
+    this.weaponLevel = this.add.text(
+      880 + 20 + this.ammoText.width,
+      886,
+      'LV.-',
+      {
+        fontFamily: 'Staatliches',
+        fontSize: '40px',
+        align: 'center',
+        color: '#b8d1c3',
+      }
+    );
+
+    // Make hp bar
+    this.makeBarBackground(130, 60, 320, 60, 0, 0x3d3c2a, 24);
+    this.rtBar = this.makeBar(130, 60, 320, 60, 0, 0xf6da1e, 30);
+    this.setValue(this.rtBar, 130, 60, 320, 60, 0, 0xf6da1e, 30, 0.2);
+    let rtIcon = this.physics.add.image(110, 90, 'rtIcon');
+    // ammoIcon.scale = 0.7;
   }
 
-  makeBar(x, y, w, h, padding, color1, color2) {
+  makeBarBackground(x, y, w, h, padding, color, radius) {
     //draw the bar
     let bar = this.add.graphics();
 
     //color the bar
-    bar.fillStyle(color1, 1);
+    bar.fillStyle(color, 1);
 
     //fill the background bar
-    bar.fillRoundedRect(0, 0, w + padding, h + padding * 2, 10);
-
-    //color the bar
-    bar.fillStyle(color2, 1);
-
-    //fill the bar with a rounded rectangle
-    bar.fillRoundedRect(0, padding, w, h, 8);
+    bar.fillRoundedRect(0, 0, w + padding, h + padding * 2, radius * 1.25);
 
     //position the bar
     bar.x = x;
@@ -97,8 +123,27 @@ export default class Level1UIScene extends Phaser.Scene {
     return bar;
   }
 
-  setValue(bar, percentage) {
+  makeBar(x, y, w, h, padding, color, radius) {
+    //draw the bar
+    let bar = this.add.graphics();
+
+    //color the bar
+    bar.fillStyle(color, 1);
+
+    //fill the bar with a rounded rectangle
+    bar.fillRoundedRect(0, padding, w, h, radius);
+
+    //position the bar
+    bar.x = x;
+    bar.y = y;
+
+    //return the bar
+    return bar;
+  }
+
+  setValue(bar, x, y, w, h, padding, color, radius, percentage) {
     //scale the bar
-    bar.scaleX = percentage / 100;
+    bar.destroy();
+    this.makeBar(x, y, w * percentage, h, padding, color, radius);
   }
 }
