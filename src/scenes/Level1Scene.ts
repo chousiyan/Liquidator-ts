@@ -281,7 +281,8 @@ export default class Level1Scene extends Phaser.Scene {
       //  Because our bullet is drawn facing up, we need to offset its rotation:
       this.weapon.bulletAngleOffset = shootAngle + 180;
       this.weapon.fireAtXY(
-        this.weapon.fireAtXY(this.input.activePointer.x+this.cameras.main._scrollX,this.input.activePointer.y+this.cameras.main._scrollY);
+        this.input.activePointer.x + this.cameras.main.scrollX,
+        this.input.activePointer.y + this.cameras.main.scrollY
       );
     }
 
@@ -295,8 +296,14 @@ export default class Level1Scene extends Phaser.Scene {
 
   checkFacingDirection() {
     // facing back
-    if (this.input.activePointer.y+this.cameras.main._scrollY < this.player.y) {
-      if (this.input.activePointer.x+this.cameras.main._scrollX <= this.player.x) {
+    if (
+      this.input.activePointer.y + this.cameras.main.scrollY <
+      this.player.y
+    ) {
+      if (
+        this.input.activePointer.x + this.cameras.main.scrollX <=
+        this.player.x
+      ) {
         this.playerFacingDirection = 'back left';
       } else {
         this.playerFacingDirection = 'back right';
@@ -304,8 +311,14 @@ export default class Level1Scene extends Phaser.Scene {
     }
 
     // facing front
-    if (this.input.activePointer.y+this.cameras.main._scrollY >= this.player.y) {
-      if (this.input.activePointer.x+this.cameras.main._scrollX <= this.player.x) {
+    if (
+      this.input.activePointer.y + this.cameras.main.scrollY >=
+      this.player.y
+    ) {
+      if (
+        this.input.activePointer.x + this.cameras.main.scrollX <=
+        this.player.x
+      ) {
         this.playerFacingDirection = 'front left';
       } else {
         this.playerFacingDirection = 'front right';
