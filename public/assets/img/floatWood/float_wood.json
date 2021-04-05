@@ -1,7 +1,7 @@
 {
 	"textures": [
 		{
-			"image": "floatWood.png",
+			"image": "float_wood.png",
 			"format": "RGBA8888",
 			"size": {
 				"w": 312,
