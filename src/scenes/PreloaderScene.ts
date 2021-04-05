@@ -42,6 +42,9 @@ export default class PreloaderScene extends Phaser.Scene {
       'assets/img/grass_light.json'
     );
 
+    // load enemy rabbit
+    this.load.image('rabbit', 'assets/img/rabbit.png');
+
     // load Player with default revolver image & animation
     this.load.atlas(
       'back-left-idle',

@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+import Phaser, { Game } from 'phaser';
 import { WeaponPlugin } from 'phaser3-weapon-plugin';
 
 import createPlayerAnims from '../anims/PlayerAnims';
@@ -7,8 +7,17 @@ import createBackgroundAnims from '../anims/BackgroundAnims';
 export default class Level1Scene extends Phaser.Scene {
   player;
   // Default speed = 120
-  playerSpeed = 600;
+  playerSpeed = 130;
   playerFacingDirection:
+    | 'back left'
+    | 'back right'
+    | 'front left'
+    | 'front right';
+
+  rabbit;
+  // Default speed = 100;
+  rabbitSpeed = 120;
+  rabbitFacingDirection:
     | 'back left'
     | 'back right'
     | 'front left'
@@ -132,6 +141,15 @@ export default class Level1Scene extends Phaser.Scene {
     this.player.body.setSize(this.player.width * 2.1, this.player.height * 3.1);
     this.player.body.offset.x = 0;
     this.player.body.offset.y = 2;
+
+    // Enemy
+    this.rabbit = this.physics.add.image(500, 650, 'rabbit');
+    this.physics.add.collider(this.player, this.rabbit);
+    this.physics.add.collider(this.rabbit, this.pond);
+    this.physics.add.collider(this.rabbit, this.blank_blockers);
+    this.physics.add.collider(this.rabbit, this.barrels);
+
+    // this.physics.moveToObject(this.rabbit, this.player, this.rabbitSpeed);
 
     this.vendingMachine1 = this.physics.add.image(1533, 920, 'vendingMachine1');
     this.vendingMachine1.setImmovable(true);
@@ -262,18 +280,23 @@ export default class Level1Scene extends Phaser.Scene {
     if (this.mouse.isDown) {
       //  Because our bullet is drawn facing up, we need to offset its rotation:
       this.weapon.bulletAngleOffset = shootAngle + 180;
-      this.weapon.fireAtPointer();
+      this.weapon.fireAtXY(
+        this.weapon.fireAtXY(this.input.activePointer.x+this.cameras.main._scrollX,this.input.activePointer.y+this.cameras.main._scrollY);
+      );
     }
 
     // if (this.cursors.up.isDown && this.player.body.touching.down) {
     //   this.player.setVelocityY(-330);
     // }
+
+    // Enemy AI: Always following the player
+    this.physics.moveToObject(this.rabbit, this.player, this.rabbitSpeed);
   }
 
   checkFacingDirection() {
     // facing back
-    if (this.mouseInput.y < this.player.y) {
-      if (this.mouseInput.x <= this.player.x) {
+    if (this.input.activePointer.y+this.cameras.main._scrollY < this.player.y) {
+      if (this.input.activePointer.x+this.cameras.main._scrollX <= this.player.x) {
         this.playerFacingDirection = 'back left';
       } else {
         this.playerFacingDirection = 'back right';
@@ -281,11 +304,32 @@ export default class Level1Scene extends Phaser.Scene {
     }
 
     // facing front
-    if (this.mouseInput.y >= this.player.y) {
-      if (this.mouseInput.x <= this.player.x) {
+    if (this.input.activePointer.y+this.cameras.main._scrollY >= this.player.y) {
+      if (this.input.activePointer.x+this.cameras.main._scrollX <= this.player.x) {
         this.playerFacingDirection = 'front left';
       } else {
         this.playerFacingDirection = 'front right';
+      }
+    }
+  }
+
+  // Enemy
+  enemyFacingDirection(enemy, player, facingDirection) {
+    // facing back
+    if (player.y < enemy.y) {
+      if (player.x <= enemy.x) {
+        facingDirection = 'back left';
+      } else {
+        facingDirection = 'back right';
+      }
+    }
+
+    // facing front
+    if (player.y >= enemy.y) {
+      if (player.x <= enemy.x) {
+        facingDirection = 'front left';
+      } else {
+        facingDirection = 'front right';
       }
     }
   }
