@@ -100,7 +100,7 @@ export default class Level1UIScene extends Phaser.Scene {
     // Make hp bar
     this.makeBarBackground(130, 60, 320, 60, 0, 0x3d3c2a, 24);
     this.rtBar = this.makeBar(130, 60, 320, 60, 0, 0xf6da1e, 30);
-    this.setValue(this.rtBar, 130, 60, 320, 60, 0, 0xf6da1e, 30, 0.2);
+    this.setValue(this.rtBar, 130, 60, 320, 60, 0, 0xf6da1e, 30, 0);
     let rtIcon = this.physics.add.image(110, 90, 'rtIcon');
     // ammoIcon.scale = 0.7;
   }

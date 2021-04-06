@@ -13,15 +13,19 @@ export default class Level1Scene extends Phaser.Scene {
     | 'back right'
     | 'front left'
     | 'front right';
+  playerInvincible = false;
+  rt = 0;
 
   rabbit;
-  // Default speed = 100;
+  // Default speed = 100
   rabbitSpeed = 120;
   rabbitFacingDirection:
     | 'back left'
     | 'back right'
     | 'front left'
     | 'front right';
+  // Every time the rabbit touches the player, player's hp decrease by 20
+  damage = 20;
 
   mouse;
   mouseInput;
@@ -144,10 +148,24 @@ export default class Level1Scene extends Phaser.Scene {
 
     // Enemy
     this.rabbit = this.physics.add.image(500, 650, 'rabbit');
-    this.physics.add.collider(this.player, this.rabbit);
+    this.physics.add.collider(
+      this.player,
+      this.rabbit,
+      this.bitten,
+      null,
+      this
+    );
     this.physics.add.collider(this.rabbit, this.pond);
     this.physics.add.collider(this.rabbit, this.blank_blockers);
     this.physics.add.collider(this.rabbit, this.barrels);
+
+    // this.physics.collide(
+    //   this.player,
+    //   this.rabbit,
+    //   this.bitten(this.damage),
+    //   null,
+    //   this
+    // );
 
     // this.physics.moveToObject(this.rabbit, this.player, this.rabbitSpeed);
 
@@ -218,8 +236,8 @@ export default class Level1Scene extends Phaser.Scene {
 
     // this.physics.add.overlap(
     //   this.player,
-    //   this.stars,
-    //   this.collectStar,
+    //   this.rabbit,
+    //   this.bite(this.damage),
     //   null,
     //   this
     // );
@@ -557,6 +575,30 @@ export default class Level1Scene extends Phaser.Scene {
       this.make.sprite(lightGrass_2);
       this.make.sprite(darkGrass_3);
       this.make.sprite(lightGrass_3);
+    }
+  }
+
+  isNotInvincible() {
+    this.playerInvincible = false;
+  }
+
+  bitten() {
+    if (!this.playerInvincible) {
+      this.rt += this.damage;
+      console.log("I'm bitten!", this.rt);
+
+      this.cameras.main.shake(300, 0.01);
+
+      //We now need to make the player invincible
+      this.playerInvincible = true;
+
+      //and then we add a timer to restore the player to a vulnerable state
+      this.time.addEvent({
+        delay: 2000, // ms
+        callback: this.isNotInvincible,
+        callbackScope: this,
+        loop: false,
+      });
     }
   }
 
