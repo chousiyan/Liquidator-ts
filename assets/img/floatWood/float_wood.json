@@ -1,0 +1,1489 @@
+{
+	"textures": [
+		{
+			"image": "float_wood.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 312,
+				"h": 922
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "floating_wood_00.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_01.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 60,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_02.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 120,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_03.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 180,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_04.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 240,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_05.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 312,
+						"h": 59
+					},
+					"frame": {
+						"x": 0,
+						"y": 300,
+						"w": 312,
+						"h": 59
+					}
+				},
+				{
+					"filename": "floating_wood_06.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 312,
+						"h": 58
+					},
+					"frame": {
+						"x": 0,
+						"y": 359,
+						"w": 312,
+						"h": 58
+					}
+				},
+				{
+					"filename": "floating_wood_07.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 312,
+						"h": 58
+					},
+					"frame": {
+						"x": 0,
+						"y": 417,
+						"w": 312,
+						"h": 58
+					}
+				},
+				{
+					"filename": "floating_wood_08.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 312,
+						"h": 58
+					},
+					"frame": {
+						"x": 0,
+						"y": 475,
+						"w": 312,
+						"h": 58
+					}
+				},
+				{
+					"filename": "floating_wood_09.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 2,
+						"w": 312,
+						"h": 57
+					},
+					"frame": {
+						"x": 0,
+						"y": 533,
+						"w": 312,
+						"h": 57
+					}
+				},
+				{
+					"filename": "floating_wood_10.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 2,
+						"w": 312,
+						"h": 56
+					},
+					"frame": {
+						"x": 0,
+						"y": 590,
+						"w": 312,
+						"h": 56
+					}
+				},
+				{
+					"filename": "floating_wood_11.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 2,
+						"w": 312,
+						"h": 56
+					},
+					"frame": {
+						"x": 0,
+						"y": 646,
+						"w": 312,
+						"h": 56
+					}
+				},
+				{
+					"filename": "floating_wood_12.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 2,
+						"w": 312,
+						"h": 56
+					},
+					"frame": {
+						"x": 0,
+						"y": 702,
+						"w": 312,
+						"h": 56
+					}
+				},
+				{
+					"filename": "floating_wood_13.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 3,
+						"w": 312,
+						"h": 55
+					},
+					"frame": {
+						"x": 0,
+						"y": 758,
+						"w": 312,
+						"h": 55
+					}
+				},
+				{
+					"filename": "floating_wood_14.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 3,
+						"w": 312,
+						"h": 55
+					},
+					"frame": {
+						"x": 0,
+						"y": 813,
+						"w": 312,
+						"h": 55
+					}
+				},
+				{
+					"filename": "floating_wood_15.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 3,
+						"w": 312,
+						"h": 54
+					},
+					"frame": {
+						"x": 0,
+						"y": 868,
+						"w": 312,
+						"h": 54
+					}
+				},
+				{
+					"filename": "floating_wood_30.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_31.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_32.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_33.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_34.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_35.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_36.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_37.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_38.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_39.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_40.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_41.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_42.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_43.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_44.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_45.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_46.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_47.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_48.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_49.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_50.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_51.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_52.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_53.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_54.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_55.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_56.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_57.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_58.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_59.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_60.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_61.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_62.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_63.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_64.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_65.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_66.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_67.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_68.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_69.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_29.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 60,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_28.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 120,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_27.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 180,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_26.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 312,
+						"h": 60
+					},
+					"frame": {
+						"x": 0,
+						"y": 240,
+						"w": 312,
+						"h": 60
+					}
+				},
+				{
+					"filename": "floating_wood_25.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 312,
+						"h": 59
+					},
+					"frame": {
+						"x": 0,
+						"y": 300,
+						"w": 312,
+						"h": 59
+					}
+				},
+				{
+					"filename": "floating_wood_24.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 312,
+						"h": 58
+					},
+					"frame": {
+						"x": 0,
+						"y": 359,
+						"w": 312,
+						"h": 58
+					}
+				},
+				{
+					"filename": "floating_wood_23.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 312,
+						"h": 58
+					},
+					"frame": {
+						"x": 0,
+						"y": 417,
+						"w": 312,
+						"h": 58
+					}
+				},
+				{
+					"filename": "floating_wood_22.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 312,
+						"h": 58
+					},
+					"frame": {
+						"x": 0,
+						"y": 475,
+						"w": 312,
+						"h": 58
+					}
+				},
+				{
+					"filename": "floating_wood_21.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 2,
+						"w": 312,
+						"h": 57
+					},
+					"frame": {
+						"x": 0,
+						"y": 533,
+						"w": 312,
+						"h": 57
+					}
+				},
+				{
+					"filename": "floating_wood_20.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 2,
+						"w": 312,
+						"h": 56
+					},
+					"frame": {
+						"x": 0,
+						"y": 590,
+						"w": 312,
+						"h": 56
+					}
+				},
+				{
+					"filename": "floating_wood_19.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 2,
+						"w": 312,
+						"h": 56
+					},
+					"frame": {
+						"x": 0,
+						"y": 646,
+						"w": 312,
+						"h": 56
+					}
+				},
+				{
+					"filename": "floating_wood_18.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 2,
+						"w": 312,
+						"h": 56
+					},
+					"frame": {
+						"x": 0,
+						"y": 702,
+						"w": 312,
+						"h": 56
+					}
+				},
+				{
+					"filename": "floating_wood_17.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 3,
+						"w": 312,
+						"h": 55
+					},
+					"frame": {
+						"x": 0,
+						"y": 758,
+						"w": 312,
+						"h": 55
+					}
+				},
+				{
+					"filename": "floating_wood_16.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 312,
+						"h": 61
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 3,
+						"w": 312,
+						"h": 55
+					},
+					"frame": {
+						"x": 0,
+						"y": 813,
+						"w": 312,
+						"h": 55
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.6"
+	}
+}

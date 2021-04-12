@@ -1,0 +1,29 @@
+{
+	"generator_info": "Shape definitions generated with PhysicsEditor. Visit https://www.codeandweb.com/physicseditor",
+	"pond": {
+		"type": "fromPhysicsEditor",
+		"label": "pond",
+		"isStatic": false,
+		"density": 0.1,
+		"restitution": 0,
+		"friction": 0.1,
+		"frictionAir": 0.01,
+		"frictionStatic": 0.5,
+		"collisionFilter": {
+			"group": 0,
+			"category": 1,
+			"mask": 255
+		},
+		"fixtures": [
+			{
+				"label": "",
+				"isSensor": false,
+				"vertices": [
+					[ { "x":0, "y":0 }, { "x":1, "y":292 }, { "x":527, "y":436 }, { "x":726, "y":416 }, { "x":726, "y":97 }, { "x":323, "y":0 } ],
+					[ { "x":124, "y":514 }, { "x":390, "y":514 }, { "x":98, "y":437 } ],
+					[ { "x":98, "y":437 }, { "x":390, "y":514 }, { "x":527, "y":436 }, { "x":1, "y":292 } ]
+				]
+			}
+		]
+	}
+}
