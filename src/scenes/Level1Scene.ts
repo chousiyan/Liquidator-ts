@@ -5,18 +5,18 @@ import createPlayerAnims from '../anims/PlayerAnims';
 import createBackgroundAnims from '../anims/BackgroundAnims';
 
 export default class Level1Scene extends Phaser.Scene {
-  player;
+  player: Phaser.Physics.Arcade.Sprite;
   // Default speed = 120
-  playerSpeed = 130;
+  playerSpeed: number = 130;
   playerFacingDirection:
     | 'back left'
     | 'back right'
     | 'front left'
     | 'front right';
   playerInvincible = false;
-  rt = 0;
+  rt: number = 0;
 
-  rabbit;
+  rabbit: Phaser.Physics.Arcade.Image;
   // Default speed = 100
   rabbitSpeed = 120;
   rabbitFacingDirection:
@@ -27,23 +27,27 @@ export default class Level1Scene extends Phaser.Scene {
   // Every time the rabbit touches the player, player's hp decrease by 20
   damage = 20;
 
-  mouse;
-  mouseInput;
+  mouse: Phaser.Input.Pointer;
+  mouseInput: Phaser.Input.InputPlugin;
 
-  pond;
-  signs;
-  blank_blockers;
-  vendingMachine1;
-  vendingMachine2;
-  vendingMachineBlocker;
-  truck1;
-  truck2;
-  truckBlocker;
-  barrels;
-  barrelShadow;
-  floatWood;
+  pond: Phaser.Physics.Arcade.Image;
+  signs: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
+  blank_blockers:
+    | Phaser.GameObjects.GameObject
+    | Phaser.GameObjects.GameObject[]
+    | Phaser.GameObjects.Group
+    | Phaser.GameObjects.Group[];
+  vendingMachine1: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
+  vendingMachine2: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
+  vendingMachineBlocker: any;
+  truck1: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
+  truck2: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
+  truckBlocker: any;
+  barrels: Phaser.Physics.Arcade.Image;
+  barrelShadow: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
+  floatWood: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
 
-  bullet;
+  bullet: any;
 
   // control firing rate
   shootControl = false;
@@ -51,12 +55,12 @@ export default class Level1Scene extends Phaser.Scene {
   // Weapon types
   // 1 = revolver, 2 = hand gun, 3 = shot gun, 4 = machine gun
   weaponType = 1;
+  cursors;
   // isRevolver = true;
   // isHandGun = false;
   // isShotGun = false;
   // isMachineGun = false;
 
-  cursors: Phaser.Types.Input.Keyboard.CursorKeys;
   // platforms;
   // stars;
   // bombs;
@@ -82,8 +86,6 @@ export default class Level1Scene extends Phaser.Scene {
       'weapons',
       this
     );
-
-    this.scene.get()
 
     // Animations
     createPlayerAnims(this.anims);
@@ -589,7 +591,7 @@ export default class Level1Scene extends Phaser.Scene {
   }
 
   bitten() {
-    if (!this.playerInvincible) {
+    if (!this.playerInvincible && this.rt < 100) {
       this.rt += this.damage;
       console.log("I'm bitten!", this.rt);
 

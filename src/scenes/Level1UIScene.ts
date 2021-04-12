@@ -1,69 +1,23 @@
 import Phaser from 'phaser';
 
-// class AmmoBar {
-//   bar: Phaser.GameObjects.Graphics;
-//   x: any;
-//   y: any;
-//   value: number;
-//   p: number;
-//   constructor(scene, x, y) {
-//     this.bar = new Phaser.GameObjects.Graphics(scene);
-
-//     this.x = x;
-//     this.y = y;
-//     this.value = 100;
-//     this.p = 76 / 100;
-
-//     this.draw();
-
-//     scene.add.existing(this.bar);
-//   }
-
-//   decrease(amount) {
-//     this.value -= amount;
-
-//     if (this.value < 0) {
-//       this.value = 0;
-//     }
-
-//     this.draw();
-
-//     return this.value === 0;
-//   }
-
-//   draw() {
-//     this.bar.clear();
-
-//     //  BG
-//     this.bar.fillStyle(0x000000);
-//     this.bar.fillRect(this.x, this.y, 80, 16);
-
-//     //  Health
-
-//     this.bar.fillStyle(0xffffff);
-//     this.bar.fillRect(this.x + 2, this.y + 2, 76, 12);
-
-//     var d = Math.floor(this.p * this.value);
-
-//     this.bar.fillRect(this.x + 2, this.y + 2, d, 12);
-//   }
-// }
-
 export default class Level1UIScene extends Phaser.Scene {
-  lights;
-  vignetting;
+  sunshine: Phaser.Physics.Arcade.Image;
+  vignetting: Phaser.Physics.Arcade.Image;
 
-  ammoBar;
-  ammoText;
-  weaponLevel;
+  ammoBar: Phaser.GameObjects.Graphics;
+  ammoText: Phaser.GameObjects.Text;
+  weaponLevel: Phaser.GameObjects.Text;
 
-  rt;
+  rt: number;
   rtBar: Phaser.GameObjects.Graphics;
-  rtIcon;
-  newRt;
+  rtIcon: Phaser.Physics.Arcade.Image;
+  newRt: number;
 
   haveRadiation1 = false;
   haveRadiation2 = false;
+
+  end_screen: Phaser.Physics.Arcade.Image;
+  death: Phaser.Physics.Arcade.Image;
 
   currentLevel;
 
@@ -79,7 +33,8 @@ export default class Level1UIScene extends Phaser.Scene {
     // get radiation tolerance from level 1 scene
     this.rt = this.currentLevel.rt;
 
-    this.lights = this.physics.add.image(1449, 443, 'lights');
+    this.sunshine = this.physics.add.image(1500, 443, 'lights');
+    this.sunshine.setAlpha(0.7);
     this.vignetting = this.physics.add.image(0, 0, 'vignetting').setOrigin(0);
 
     this.input.setDefaultCursor('url(assets/img/UI/aim.png), pointer');
@@ -113,6 +68,11 @@ export default class Level1UIScene extends Phaser.Scene {
     this.rtBar = this.makeBar(130, 60, 0, 60, 0, 0xf6da1e, 30);
     this.rtIcon = this.physics.add.image(110, 90, 'rtIcon');
     // ammoIcon.scale = 0.7;
+
+    this.end_screen = this.physics.add.image(0, 0, 'end_screen').setOrigin(0);
+    this.end_screen.setAlpha(0);
+    this.death = this.physics.add.image(974, 534, 'death');
+    this.death.setAlpha(0);
   }
 
   update() {
@@ -154,7 +114,15 @@ export default class Level1UIScene extends Phaser.Scene {
     }
   }
 
-  makeBarBackground(x, y, w, h, padding, color, radius) {
+  makeBarBackground(
+    x: number,
+    y: number,
+    w: number,
+    h: number,
+    padding: number,
+    color: number,
+    radius: number
+  ) {
     //draw the bar
     let bar = this.add.graphics();
 
@@ -172,7 +140,15 @@ export default class Level1UIScene extends Phaser.Scene {
     return bar;
   }
 
-  makeBar(x, y, w, h, padding, color, radius) {
+  makeBar(
+    x: number,
+    y: number,
+    w: number,
+    h: number,
+    padding: number,
+    color: number,
+    radius: number
+  ) {
     //draw the bar
     let bar = this.add.graphics();
 
@@ -190,7 +166,17 @@ export default class Level1UIScene extends Phaser.Scene {
     return bar;
   }
 
-  setValue(bar, x, y, w, h, padding, color, radius, percentage) {
+  setValue(
+    bar: Phaser.GameObjects.Graphics,
+    x: number,
+    y: number,
+    w: number,
+    h: number,
+    padding: number,
+    color: number,
+    radius: number,
+    percentage: number
+  ) {
     //scale the bar
     bar.destroy();
     this.makeBar(x, y, w * percentage, h, padding, color, radius);
@@ -198,7 +184,14 @@ export default class Level1UIScene extends Phaser.Scene {
 
   gameOver() {
     // display gameOver screen
+    this.end_screen.setAlpha(1);
+    this.death.setAlpha(1);
+    this.newRt = 100;
+    this.rtIcon.destroy();
+
     // make player invisible
+    this.currentLevel.player.setAlpha(0);
+
     // go back to start screen after 5 seconds
   }
 }
