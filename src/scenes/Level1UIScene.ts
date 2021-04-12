@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-// import Level1Scene from './scenes/Level1Scene';
+import Level1Scene from './Level1Scene';
 
 // class AmmoBar {
 //   bar: Phaser.GameObjects.Graphics;
@@ -60,6 +60,9 @@ export default class Level1UIScene extends Phaser.Scene {
 
   rt;
   rtBar: Phaser.GameObjects.Graphics;
+  rtIcon;
+
+  currentLevel;
 
   constructor() {
     super('UI');
@@ -68,6 +71,11 @@ export default class Level1UIScene extends Phaser.Scene {
   preload() {}
 
   create() {
+    this.currentLevel = this.scene.get('level-1');
+
+    // get radiation tolerance from level 1 scene
+    this.rt = this.currentLevel.rt;
+
     this.lights = this.physics.add.image(1449, 443, 'lights');
     this.vignetting = this.physics.add.image(0, 0, 'vignetting').setOrigin(0);
 
@@ -76,7 +84,7 @@ export default class Level1UIScene extends Phaser.Scene {
     // Make ammo bar
     this.makeBarBackground(850, 936, 280, 46, 6, 0xb8d1c3, 8);
     this.ammoBar = this.makeBar(850, 936, 280, 46, 6, 0x74a59b, 8);
-    this.setValue(this.ammoBar, 850, 936, 280, 46, 6, 0x74a59b, 8, 1);
+
     let ammoIcon = this.physics.add.image(820, 966, 'ammoIcon');
     ammoIcon.scale = 0.7;
 
@@ -97,12 +105,37 @@ export default class Level1UIScene extends Phaser.Scene {
       }
     );
 
-    // Make hp bar
+    // Make rt bar
     this.makeBarBackground(130, 60, 320, 60, 0, 0x3d3c2a, 24);
-    this.rtBar = this.makeBar(130, 60, 320, 60, 0, 0xf6da1e, 30);
-    this.setValue(this.rtBar, 130, 60, 320, 60, 0, 0xf6da1e, 30, 0);
-    let rtIcon = this.physics.add.image(110, 90, 'rtIcon');
+    this.rtBar = this.makeBar(130, 60, 0, 60, 0, 0xf6da1e, 30);
+    this.rtIcon = this.physics.add.image(110, 90, 'rtIcon');
     // ammoIcon.scale = 0.7;
+  }
+
+  update() {
+    // update ammo bar
+    // this.setValue(this.ammoBar, 850, 936, 280, 46, 6, 0x74a59b, 8, 1);
+
+    let newRt = this.currentLevel.rt;
+    if (newRt > this.rt && newRt <= 100) {
+      this.rt = this.currentLevel.rt;
+      this.setValue(
+        this.rtBar,
+        130,
+        60,
+        320,
+        60,
+        0,
+        0xf6da1e,
+        30,
+        this.rt / 100
+      );
+      this.rtIcon.destroy();
+      this.rtIcon = this.physics.add.image(110, 90, 'rtIcon');
+    }
+
+    // update rt bar
+    // this.setValue(this.rtBar, 130, 60, 320, 60, 0, 0xf6da1e, 30, this.rt / 100);
   }
 
   makeBarBackground(x, y, w, h, padding, color, radius) {

@@ -1,4 +1,4 @@
-import Phaser, { Game } from 'phaser';
+import Phaser from 'phaser';
 import { WeaponPlugin } from 'phaser3-weapon-plugin';
 
 import createPlayerAnims from '../anims/PlayerAnims';
@@ -68,6 +68,10 @@ export default class Level1Scene extends Phaser.Scene {
     super('level-1');
   }
 
+  // level1Scene() {
+  //   Phaser.Scene.call(this, { key: 'level1Scene', active: true });
+  // }
+
   preload() {}
 
   create() {
@@ -78,6 +82,8 @@ export default class Level1Scene extends Phaser.Scene {
       'weapons',
       this
     );
+
+    this.scene.get()
 
     // Animations
     createPlayerAnims(this.anims);
@@ -96,7 +102,7 @@ export default class Level1Scene extends Phaser.Scene {
       0xa79567,
       1
     );
-    gradientBackground.fillRect(0, 0, 2308, 1478);
+    gradientBackground.fillRect(-200, -200, 2708, 1878);
 
     //  Background
     // this.add.image(0, 0, 'map-background').setOrigin(0);
