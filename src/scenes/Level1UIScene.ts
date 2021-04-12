@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-import Level1Scene from './Level1Scene';
 
 // class AmmoBar {
 //   bar: Phaser.GameObjects.Graphics;

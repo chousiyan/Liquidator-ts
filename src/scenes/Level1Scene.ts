@@ -351,25 +351,25 @@ export default class Level1Scene extends Phaser.Scene {
   }
 
   // Enemy
-  enemyFacingDirection(enemy, player, facingDirection) {
-    // facing back
-    if (player.y < enemy.y) {
-      if (player.x <= enemy.x) {
-        facingDirection = 'back left';
-      } else {
-        facingDirection = 'back right';
-      }
-    }
+  // enemyFacingDirection(enemy, player, facingDirection) {
+  //   // facing back
+  //   if (player.y < enemy.y) {
+  //     if (player.x <= enemy.x) {
+  //       facingDirection = 'back left';
+  //     } else {
+  //       facingDirection = 'back right';
+  //     }
+  //   }
 
-    // facing front
-    if (player.y >= enemy.y) {
-      if (player.x <= enemy.x) {
-        facingDirection = 'front left';
-      } else {
-        facingDirection = 'front right';
-      }
-    }
-  }
+  //   // facing front
+  //   if (player.y >= enemy.y) {
+  //     if (player.x <= enemy.x) {
+  //       facingDirection = 'front left';
+  //     } else {
+  //       facingDirection = 'front right';
+  //     }
+  //   }
+  // }
 
   // revolver idle animation
   revolverIdle() {
@@ -595,7 +595,7 @@ export default class Level1Scene extends Phaser.Scene {
 
       this.cameras.main.shake(300, 0.01);
 
-      //We nosaw need to make the player invincible
+      //We now need to make the player invincible
       this.playerInvincible = true;
 
       //and then we add a timer to restore the player to a vulnerable state
