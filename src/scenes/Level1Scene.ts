@@ -595,7 +595,7 @@ export default class Level1Scene extends Phaser.Scene {
 
       this.cameras.main.shake(300, 0.01);
 
-      //We now need to make the player invincible
+      //We nosaw need to make the player invincible
       this.playerInvincible = true;
 
       //and then we add a timer to restore the player to a vulnerable state

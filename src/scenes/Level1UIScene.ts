@@ -61,6 +61,10 @@ export default class Level1UIScene extends Phaser.Scene {
   rt;
   rtBar: Phaser.GameObjects.Graphics;
   rtIcon;
+  newRt;
+
+  haveRadiation1 = false;
+  haveRadiation2 = false;
 
   currentLevel;
 
@@ -116,8 +120,8 @@ export default class Level1UIScene extends Phaser.Scene {
     // update ammo bar
     // this.setValue(this.ammoBar, 850, 936, 280, 46, 6, 0x74a59b, 8, 1);
 
-    let newRt = this.currentLevel.rt;
-    if (newRt > this.rt && newRt <= 100) {
+    this.newRt = this.currentLevel.rt;
+    if (this.newRt > this.rt && this.newRt <= 100) {
       this.rt = this.currentLevel.rt;
       this.setValue(
         this.rtBar,
@@ -134,8 +138,21 @@ export default class Level1UIScene extends Phaser.Scene {
       this.rtIcon = this.physics.add.image(110, 90, 'rtIcon');
     }
 
-    // update rt bar
-    // this.setValue(this.rtBar, 130, 60, 320, 60, 0, 0xf6da1e, 30, this.rt / 100);
+    // Add radiation vignetting when radiation tolerance is filled
+    if (this.newRt >= 30 && this.newRt < 70 && this.haveRadiation1 == false) {
+      this.physics.add.image(0, 0, 'radiation_1').setOrigin(0);
+      this.haveRadiation1 = true;
+    }
+
+    if (this.newRt >= 70 && this.newRt < 100 && this.haveRadiation2 == false) {
+      this.physics.add.image(0, 0, 'radiation_2').setOrigin(0);
+      this.haveRadiation2 = true;
+    }
+
+    // game over
+    if (this.newRt >= 100) {
+      this.gameOver();
+    }
   }
 
   makeBarBackground(x, y, w, h, padding, color, radius) {
@@ -178,5 +195,11 @@ export default class Level1UIScene extends Phaser.Scene {
     //scale the bar
     bar.destroy();
     this.makeBar(x, y, w * percentage, h, padding, color, radius);
+  }
+
+  gameOver() {
+    // display gameOver screen
+    // make player invisible
+    // go back to start screen after 5 seconds
   }
 }
