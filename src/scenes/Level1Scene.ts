@@ -3,9 +3,11 @@ import { WeaponPlugin } from 'phaser3-weapon-plugin';
 
 import createPlayerAnims from '../anims/PlayerAnims';
 import createBackgroundAnims from '../anims/BackgroundAnims';
+import PlayerSprite from '../sprites/PlayerSprite';
 
 export default class Level1Scene extends Phaser.Scene {
-  player: Phaser.Physics.Arcade.Sprite;
+  // player: Phaser.Physics.Arcade.Sprite;
+  player: PlayerSprite;
   // Default speed = 120
   playerSpeed: number = 130;
   playerFacingDirection:
@@ -56,6 +58,8 @@ export default class Level1Scene extends Phaser.Scene {
   // 1 = revolver, 2 = hand gun, 3 = shot gun, 4 = machine gun
   weaponType = 1;
   cursors;
+  weapon: any;
+
   // isRevolver = true;
   // isHandGun = false;
   // isShotGun = false;
@@ -148,11 +152,12 @@ export default class Level1Scene extends Phaser.Scene {
     // this.grassGroup.create(400, 568, 'ground').setScale(2).refreshBody();
 
     // Player
-    this.player = this.physics.add.sprite(400, 300, 'revolver-left');
-    this.player.setCollideWorldBounds(true);
-    this.player.body.setSize(this.player.width * 2.1, this.player.height * 3.1);
-    this.player.body.offset.x = 0;
-    this.player.body.offset.y = 2;
+    this.player = new PlayerSprite(this, 400, 300);
+    // this.physics.add.sprite(400, 300, 'revolver-left');
+    // this.player.setCollideWorldBounds(true);
+    // this.player.body.setSize(this.player.width * 2.1, this.player.height * 3.1);
+    // this.player.body.offset.x = 0;
+    // this.player.body.offset.y = 2;
 
     // Enemy
     this.rabbit = this.physics.add.image(500, 650, 'rabbit');
@@ -571,6 +576,7 @@ export default class Level1Scene extends Phaser.Scene {
         },
       },
     };
+
     // Make a few sprites using the config above
     for (let i = 0; i < 5; i++) {
       this.make.sprite(darkGrass_1);
