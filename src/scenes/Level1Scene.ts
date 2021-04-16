@@ -3,29 +3,24 @@ import { WeaponPlugin } from 'phaser3-weapon-plugin';
 
 import createPlayerAnims from '../anims/PlayerAnims';
 import createBackgroundAnims from '../anims/BackgroundAnims';
+import PlayerSprite from '../sprites/PlayerSprite';
 
 export default class Level1Scene extends Phaser.Scene {
-  player: Phaser.Physics.Arcade.Sprite;
-  // Default speed = 120
-  playerSpeed: number = 130;
-  playerFacingDirection:
-    | 'back left'
-    | 'back right'
-    | 'front left'
-    | 'front right';
-  playerInvincible = false;
+  player: PlayerSprite;
   rt: number = 0;
 
-  rabbit: Phaser.Physics.Arcade.Image;
+  // rabbits: Phaser.Physics.Arcade.Image;
+  rabbits: Phaser.Physics.Arcade.Group;
   // Default speed = 100
-  rabbitSpeed = 120;
-  rabbitFacingDirection:
-    | 'back left'
-    | 'back right'
-    | 'front left'
-    | 'front right';
+  rabbitSpeed: number = 100;
+  // rabbitFacingDirection:
+  //   | 'back left'
+  //   | 'back right'
+  //   | 'front left'
+  //   | 'front right';
+
   // Every time the rabbit touches the player, player's hp decrease by 20
-  damage = 20;
+  damage: number = 20;
 
   mouse: Phaser.Input.Pointer;
   mouseInput: Phaser.Input.InputPlugin;
@@ -50,12 +45,13 @@ export default class Level1Scene extends Phaser.Scene {
   bullet: any;
 
   // control firing rate
-  shootControl = false;
+  shootControl: boolean = false;
 
   // Weapon types
   // 1 = revolver, 2 = hand gun, 3 = shot gun, 4 = machine gun
-  weaponType = 1;
+  weaponType: number = 1;
   cursors;
+  weapon: any;
   // isRevolver = true;
   // isHandGun = false;
   // isShotGun = false;
@@ -148,34 +144,33 @@ export default class Level1Scene extends Phaser.Scene {
     // this.grassGroup.create(400, 568, 'ground').setScale(2).refreshBody();
 
     // Player
-    this.player = this.physics.add.sprite(400, 300, 'revolver-left');
-    this.player.setCollideWorldBounds(true);
-    this.player.body.setSize(this.player.width * 2.1, this.player.height * 3.1);
-    this.player.body.offset.x = 0;
-    this.player.body.offset.y = 2;
+    this.player = new PlayerSprite(this, 400, 300);
 
     // Enemy
-    this.rabbit = this.physics.add.image(500, 650, 'rabbit');
+    // this.rabbits = this.physics.add.image(500, 650, 'rabbit');
+    this.rabbits = this.physics.add.group();
+    this.rabbits.maxSize = 10;
+
+    // Does the rabbit collide with each other?
+    // this.physics.add.collider(this.rabbits, this.rabbits);
+
+    this.time.addEvent({
+      delay: 2000,
+      callback: this.newRabbit,
+      callbackScope: this,
+      loop: true,
+    });
+
     this.physics.add.collider(
       this.player,
-      this.rabbit,
+      this.rabbits,
       this.bitten,
       null,
       this
     );
-    this.physics.add.collider(this.rabbit, this.pond);
-    this.physics.add.collider(this.rabbit, this.blank_blockers);
-    this.physics.add.collider(this.rabbit, this.barrels);
-
-    // this.physics.collide(
-    //   this.player,
-    //   this.rabbit,
-    //   this.bitten(this.damage),
-    //   null,
-    //   this
-    // );
-
-    // this.physics.moveToObject(this.rabbit, this.player, this.rabbitSpeed);
+    this.physics.add.collider(this.rabbits, this.pond);
+    this.physics.add.collider(this.rabbits, this.blank_blockers);
+    this.physics.add.collider(this.rabbits, this.barrels);
 
     this.vendingMachine1 = this.physics.add.image(1533, 920, 'vendingMachine1');
     this.vendingMachine1.setImmovable(true);
@@ -262,9 +257,8 @@ export default class Level1Scene extends Phaser.Scene {
     // Background animations
     this.floatWood.play('float_wood', true);
 
-    // Player movement
     // Player facing direction based on mouse position
-    this.checkFacingDirection();
+    this.player.checkFacingDirection();
 
     // Player movement
     // idle
@@ -275,24 +269,24 @@ export default class Level1Scene extends Phaser.Scene {
       !this.cursors.down.isDown
     ) {
       this.player.setVelocity(0);
-      this.revolverIdle();
+      this.player.revolverIdle();
     }
 
     // walk
     if (this.cursors.left.isDown) {
-      this.player.setVelocityX(-this.playerSpeed);
-      this.revolverWalk();
+      this.player.setVelocityX(-this.player.speed);
+      this.player.revolverWalk();
     } else if (this.cursors.right.isDown) {
-      this.player.setVelocityX(this.playerSpeed);
-      this.revolverWalk();
+      this.player.setVelocityX(this.player.speed);
+      this.player.revolverWalk();
     }
 
     if (this.cursors.up.isDown) {
-      this.player.setVelocityY(-this.playerSpeed);
-      this.revolverWalk();
+      this.player.setVelocityY(-this.player.speed);
+      this.player.revolverWalk();
     } else if (this.cursors.down.isDown) {
-      this.player.setVelocityY(this.playerSpeed);
-      this.revolverWalk();
+      this.player.setVelocityY(this.player.speed);
+      this.player.revolverWalk();
     }
 
     //mouse clicked
@@ -312,127 +306,44 @@ export default class Level1Scene extends Phaser.Scene {
       );
     }
 
-    // if (this.cursors.up.isDown && this.player.body.touching.down) {
-    //   this.player.setVelocityY(-330);
-    // }
-
     // Enemy AI: Always following the player
-    this.physics.moveToObject(this.rabbit, this.player, this.rabbitSpeed);
-  }
+    for (var i = 0; i < this.rabbits.getLength(); i++) {
+      this.physics.moveToObject(
+        this.rabbits.children.entries[i],
+        this.player,
+        this.rabbitSpeed
+      );
 
-  checkFacingDirection() {
-    // facing back
-    if (
-      this.input.activePointer.y + this.cameras.main.scrollY <
-      this.player.y
-    ) {
-      if (
-        this.input.activePointer.x + this.cameras.main.scrollX <=
-        this.player.x
-      ) {
-        this.playerFacingDirection = 'back left';
-      } else {
-        this.playerFacingDirection = 'back right';
-      }
+      this.enemyFacingDirection(this.rabbits.children.entries[i]);
     }
 
-    // facing front
-    if (
-      this.input.activePointer.y + this.cameras.main.scrollY >=
-      this.player.y
-    ) {
-      if (
-        this.input.activePointer.x + this.cameras.main.scrollX <=
-        this.player.x
-      ) {
-        this.playerFacingDirection = 'front left';
-      } else {
-        this.playerFacingDirection = 'front right';
-      }
-    }
-  }
+    // this.rabbits.children.iterate(function (child) {
+    //   // this.enemyFacingDirection(child);
+    //   if (child.y > this.player.y) {
+    //     if (child.x <= this.player.x) {
+    //       // this.rabbitFacingDirection = 'back left';
+    //       child.setTexture('rabbit-back');
+    //       child.flipX = false;
+    //     } else {
+    //       // this.rabbitFacingDirection = 'back right';
+    //       child.setTexture('rabbit-back');
+    //       child.flipX = true;
+    //     }
+    //   }
 
-  // Enemy
-  // enemyFacingDirection(enemy, player, facingDirection) {
-  //   // facing back
-  //   if (player.y < enemy.y) {
-  //     if (player.x <= enemy.x) {
-  //       facingDirection = 'back left';
-  //     } else {
-  //       facingDirection = 'back right';
-  //     }
-  //   }
-
-  //   // facing front
-  //   if (player.y >= enemy.y) {
-  //     if (player.x <= enemy.x) {
-  //       facingDirection = 'front left';
-  //     } else {
-  //       facingDirection = 'front right';
-  //     }
-  //   }
-  // }
-
-  // revolver idle animation
-  revolverIdle() {
-    switch (this.playerFacingDirection) {
-      case 'back left': {
-        this.player.play('back-left-idle', true);
-        this.player.flipX = false;
-        break;
-      }
-      case 'back right': {
-        this.player.play('back-left-idle', true);
-        this.player.flipX = true;
-        break;
-      }
-      case 'front left': {
-        this.player.play('revolver-left-idle', true);
-        this.player.flipX = false;
-        break;
-      }
-      case 'front right': {
-        this.player.play('revolver-left-idle', true);
-        this.player.flipX = true;
-        break;
-      }
-      default: {
-        this.player.play('revolver-left-idle', true);
-        this.player.flipX = false;
-        break;
-      }
-    }
-  }
-
-  // revolver walking animation
-  revolverWalk() {
-    switch (this.playerFacingDirection) {
-      case 'back left': {
-        this.player.play('back-left-walk', true);
-        this.player.flipX = false;
-        break;
-      }
-      case 'back right': {
-        this.player.play('back-left-walk', true);
-        this.player.flipX = true;
-        break;
-      }
-      case 'front left': {
-        this.player.play('revolver-left-walk', true);
-        this.player.flipX = false;
-        break;
-      }
-      case 'front right': {
-        this.player.play('revolver-left-walk', true);
-        this.player.flipX = true;
-        break;
-      }
-      default: {
-        this.player.play('revolver-left-walk', true);
-        this.player.flipX = false;
-        break;
-      }
-    }
+    //   // facing front
+    //   if (child.y <= this.player.y) {
+    //     if (child.x <= this.player.x) {
+    //       // this.facingDirection = 'front left';
+    //       child.setTexture('rabbit');
+    //       child.flipX = false;
+    //     } else {
+    //       // this.facingDirection = 'front right';
+    //       child.setTexture('rabbit');
+    //       child.flipX = true;
+    //     }
+    //   }
+    // });
   }
 
   createGrass() {
@@ -587,18 +498,18 @@ export default class Level1Scene extends Phaser.Scene {
   }
 
   isNotInvincible() {
-    this.playerInvincible = false;
+    this.player.isInvincible = false;
   }
 
   bitten() {
-    if (!this.playerInvincible && this.rt < 100) {
+    if (!this.player.isInvincible && this.rt < 100) {
       this.rt += this.damage;
       console.log("I'm bitten!", this.rt);
 
       this.cameras.main.shake(300, 0.01);
 
       //We now need to make the player invincible
-      this.playerInvincible = true;
+      this.player.isInvincible = true;
 
       //and then we add a timer to restore the player to a vulnerable state
       this.time.addEvent({
@@ -610,9 +521,76 @@ export default class Level1Scene extends Phaser.Scene {
     }
   }
 
-  // check overlaps between player and stars
-  // collectStar(player, star) {
-  //   star.disableBody(true, true);
+  newRabbit() {
+    // only generate outside of world bounds
+    let position = Phaser.Math.RND.pick(['left', 'right', 'top', 'bottom']);
+
+    if (position == 'left' || position == 'right') {
+      this.rabbits.create(
+        Phaser.Math.RND.pick([-37, 2308 + 37]),
+        Phaser.Math.Between(-58, 1478 + 58),
+        'rabbit'
+      );
+      this.vendingMachine1.destroy();
+      this.vendingMachine1 = this.physics.add.image(
+        1533,
+        920,
+        'vendingMachine1'
+      );
+
+      this.vendingMachine1.setImmovable(true);
+
+      this.truck1.destroy();
+      this.truck1 = this.physics.add.image(2076, 299, 'truck1');
+      this.truck1.setImmovable(true);
+    } else {
+      this.rabbits.create(
+        Phaser.Math.Between(-37, 2308 + 37),
+        Phaser.Math.RND.pick([-58, 148 + 58]),
+        'rabbit'
+      );
+
+      this.vendingMachine1.destroy();
+      this.vendingMachine1 = this.physics.add.image(
+        1533,
+        920,
+        'vendingMachine1'
+      );
+      this.vendingMachine1.setImmovable(true);
+
+      this.truck1.destroy();
+      this.truck1 = this.physics.add.image(2076, 299, 'truck1');
+      this.truck1.setImmovable(true);
+    }
+  }
+
+  enemyFacingDirection(rabbit) {
+    // facing back
+    if (rabbit.y > this.player.y) {
+      if (rabbit.x <= this.player.x) {
+        // back right
+        rabbit.setTexture('rabbit-back');
+        rabbit.flipX = true;
+      } else {
+        // back left
+        rabbit.setTexture('rabbit-back');
+        rabbit.flipX = false;
+      }
+    }
+
+    // facing front
+    if (rabbit.y <= this.player.y) {
+      if (rabbit.x <= this.player.x) {
+        // front right
+        rabbit.setTexture('rabbit');
+        rabbit.flipX = true;
+      } else {
+        // front left
+        rabbit.setTexture('rabbit');
+        rabbit.flipX = false;
+      }
+    }
+  }
 
   //   this.score += 10;
   //   this.scoreText.setText('Score: ' + this.score);
