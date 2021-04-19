@@ -35,7 +35,7 @@ export default class Level1Scene extends Phaser.Scene {
   barrelShadow: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
   floatWood: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
 
-  bullet: any;
+  bullet: Phaser.Physics.Arcade.Image;
 
   // control firing rate
   shootControl: boolean = false;
@@ -43,8 +43,10 @@ export default class Level1Scene extends Phaser.Scene {
   // Weapon types
   // 1 = revolver, 2 = hand gun, 3 = shot gun, 4 = machine gun
   weaponType: number = 1;
-  cursors;
   weapon: any;
+  game_bgm: Phaser.Sound.BaseSound;
+  revolver_sound: Phaser.Sound.BaseSound;
+  canShoot: boolean = true;
   // isRevolver = true;
   // isHandGun = false;
   // isShotGun = false;
@@ -83,6 +85,12 @@ export default class Level1Scene extends Phaser.Scene {
     //  Set the camera and physics bounds to be the size of 4x4 bg images
     this.cameras.main.setBounds(0, 0, 2308, 1478);
     this.physics.world.setBounds(0, 0, 2308, 1478);
+
+    this.sound.pauseOnBlur = false;
+
+    this.game_bgm = this.sound.add('game_bgm', { volume: 0.3 });
+    this.game_bgm.play();
+    this.revolver_sound = this.sound.add('revolver_sound', { volume: 1.5 });
 
     // Gradient Background
     let gradientBackground = this.add.graphics();
@@ -184,22 +192,6 @@ export default class Level1Scene extends Phaser.Scene {
     // Set camera to follow the player
     this.cameras.main.startFollow(this.player, true, 0.05, 0.05);
 
-    // // Player
-    // this.player = this.physics.add.sprite(100, 450, 'dude');
-
-    // this.player.setBounce(0.2);
-    // this.player.setCollideWorldBounds(true);
-    // this.physics.add.collider(this.player, this.platforms);
-
-    // Input Events, replaced arrows with W/A/S/D
-    // this.cursors = this.input.keyboard.createCursorKeys();
-    this.cursors = this.input.keyboard.addKeys({
-      up: Phaser.Input.Keyboard.KeyCodes.W,
-      down: Phaser.Input.Keyboard.KeyCodes.S,
-      left: Phaser.Input.Keyboard.KeyCodes.A,
-      right: Phaser.Input.Keyboard.KeyCodes.D,
-    });
-
     //for mouse position
     this.mouseInput = this.input;
 
@@ -219,8 +211,8 @@ export default class Level1Scene extends Phaser.Scene {
     // this.weapon.bulletKillType = WeaponPlugin.consts.KillType.KILL_WORLD_BOUNDS;
 
     //  The speed at which the bullet is fired
-    // Revolver at 800
-    this.weapon.bulletSpeed = 800;
+    // Handgun at 1000
+    this.weapon.bulletSpeed = 1000;
 
     //  Speed-up the rate of fire, allowing them to shoot 1 bullet every 500ms
     this.weapon.fireRate = 500;
@@ -230,18 +222,6 @@ export default class Level1Scene extends Phaser.Scene {
 
     //  Add a variance to the bullet angle by +- this value
     this.weapon.bulletAngleVariance = 2;
-
-    // this.stars.children.iterate(function (child) {
-    //   child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-    // });
-
-    // this.physics.add.overlap(
-    //   this.player,
-    //   this.rabbit,
-    //   this.bite(this.damage),
-    //   null,
-    //   this
-    // );
 
     // // Score
     // let scoreText = this.add.text(16, 16, 'Score: 0', {
@@ -254,38 +234,6 @@ export default class Level1Scene extends Phaser.Scene {
   update() {
     // Background animations
     this.floatWood.play('float_wood', true);
-
-    // Player facing direction based on mouse position
-    this.player.checkFacingDirection();
-
-    // Player movement
-    // idle
-    if (
-      !this.cursors.left.isDown &&
-      !this.cursors.right.isDown &&
-      !this.cursors.up.isDown &&
-      !this.cursors.down.isDown
-    ) {
-      this.player.setVelocity(0);
-      this.player.revolverIdle();
-    }
-
-    // walk
-    if (this.cursors.left.isDown) {
-      this.player.setVelocityX(-this.player.speed);
-      this.player.revolverWalk();
-    } else if (this.cursors.right.isDown) {
-      this.player.setVelocityX(this.player.speed);
-      this.player.revolverWalk();
-    }
-
-    if (this.cursors.up.isDown) {
-      this.player.setVelocityY(-this.player.speed);
-      this.player.revolverWalk();
-    } else if (this.cursors.down.isDown) {
-      this.player.setVelocityY(this.player.speed);
-      this.player.revolverWalk();
-    }
 
     //mouse clicked
     let shootAngle = Phaser.Math.Angle.Between(
@@ -302,24 +250,8 @@ export default class Level1Scene extends Phaser.Scene {
         this.input.activePointer.x + this.cameras.main.scrollX,
         this.input.activePointer.y + this.cameras.main.scrollY
       );
+      this.gunshotSound();
     }
-
-    // Enemy AI: Always following the player
-    // for (var i = 0; i < this.rabbits.getLength(); i++) {
-    //   this.physics.moveToObject(
-    //     this.rabbits.children.entries[i],
-    //     this.player,
-    //     100
-    //   );
-
-    //   this.rabbitFacingDirection(this.rabbits.children.entries[i]);
-    // }
-
-    this.rabbits.children.iterate(function (child) {
-      console.log(this);
-      child.movement(this.player);
-      child.facingDirection(this.player, 'rabbit', 'rabbit_back');
-    });
   }
 
   createGrass() {
@@ -540,31 +472,21 @@ export default class Level1Scene extends Phaser.Scene {
     }
   }
 
-  rabbitFacingDirection(rabbit) {
-    // facing back
-    if (rabbit.y > this.player.y) {
-      if (rabbit.x <= this.player.x) {
-        // back right
-        rabbit.setTexture('rabbit-back');
-        rabbit.flipX = true;
-      } else {
-        // back left
-        rabbit.setTexture('rabbit-back');
-        rabbit.flipX = false;
-      }
-    }
+  restoreCanShoot() {
+    this.canShoot = true;
+  }
 
-    // facing front
-    if (rabbit.y <= this.player.y) {
-      if (rabbit.x <= this.player.x) {
-        // front right
-        rabbit.setTexture('rabbit');
-        rabbit.flipX = true;
-      } else {
-        // front left
-        rabbit.setTexture('rabbit');
-        rabbit.flipX = false;
-      }
+  gunshotSound() {
+    if (this.canShoot) {
+      this.revolver_sound.play();
+
+      this.canShoot = false;
+      this.time.addEvent({
+        delay: 500, // ms
+        callback: this.restoreCanShoot,
+        callbackScope: this,
+        loop: false,
+      });
     }
   }
 

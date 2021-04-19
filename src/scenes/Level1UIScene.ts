@@ -46,7 +46,7 @@ export default class Level1UIScene extends Phaser.Scene {
     let ammoIcon = this.physics.add.image(820, 966, 'ammoIcon');
     ammoIcon.scale = 0.7;
 
-    this.ammoText = this.add.text(880, 886, 'REVOLVER', {
+    this.ammoText = this.add.text(880, 886, 'HANDGUN', {
       fontFamily: 'Staatliches',
       fontSize: '40px',
       align: 'center',

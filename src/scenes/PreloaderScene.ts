@@ -77,14 +77,9 @@ export default class PreloaderScene extends Phaser.Scene {
       'assets/img/player/revolver/revolver_front_left_walk.json'
     );
 
-    // this.load.image('ground', 'assets/img/platform.png');
-    // this.load.image('star', 'assets/img/star.png');
-    // this.load.image('bomb', 'assets/img/bomb.png');
-
-    // this.load.spritesheet('dude', 'assets/img/dude.png', {
-    //   frameWidth: 32,
-    //   frameHeight: 48,
-    // });
+    // audio
+    this.load.audio('game_bgm', ['assets/audio/game_bgm.mp3']);
+    this.load.audio('revolver_sound', ['assets/audio/revolver.mp3']);
   }
 
   create() {
