@@ -4,20 +4,13 @@ import { WeaponPlugin } from 'phaser3-weapon-plugin';
 import createPlayerAnims from '../anims/PlayerAnims';
 import createBackgroundAnims from '../anims/BackgroundAnims';
 import PlayerSprite from '../sprites/PlayerSprite';
+import EnemySprite from '../sprites/EnemySprite';
 
 export default class Level1Scene extends Phaser.Scene {
   player: PlayerSprite;
   rt: number = 0;
 
-  // rabbits: Phaser.Physics.Arcade.Image;
   rabbits: Phaser.Physics.Arcade.Group;
-  // Default speed = 100
-  rabbitSpeed: number = 100;
-  // rabbitFacingDirection:
-  //   | 'back left'
-  //   | 'back right'
-  //   | 'front left'
-  //   | 'front right';
 
   // Every time the rabbit touches the player, player's hp decrease by 20
   damage: number = 20;
@@ -148,8 +141,13 @@ export default class Level1Scene extends Phaser.Scene {
 
     // Enemy
     // this.rabbits = this.physics.add.image(500, 650, 'rabbit');
-    this.rabbits = this.physics.add.group();
-    this.rabbits.maxSize = 10;
+    this.rabbits = this.physics.add.group({
+      classType: EnemySprite,
+      maxSize: 10,
+      runChildUpdate: true,
+    });
+    // this.rabbits = this.physics.add.group();
+    // this.rabbits.maxSize = 10;
 
     // Does the rabbit collide with each other?
     // this.physics.add.collider(this.rabbits, this.rabbits);
@@ -224,8 +222,8 @@ export default class Level1Scene extends Phaser.Scene {
     // Revolver at 800
     this.weapon.bulletSpeed = 800;
 
-    //  Speed-up the rate of fire, allowing them to shoot 1 bullet every 800ms
-    this.weapon.fireRate = 800;
+    //  Speed-up the rate of fire, allowing them to shoot 1 bullet every 500ms
+    this.weapon.fireRate = 500;
 
     //  Tell the Weapon to track the 'player' Sprite
     this.weapon.trackSprite(this.player);
@@ -307,43 +305,21 @@ export default class Level1Scene extends Phaser.Scene {
     }
 
     // Enemy AI: Always following the player
-    for (var i = 0; i < this.rabbits.getLength(); i++) {
-      this.physics.moveToObject(
-        this.rabbits.children.entries[i],
-        this.player,
-        this.rabbitSpeed
-      );
+    // for (var i = 0; i < this.rabbits.getLength(); i++) {
+    //   this.physics.moveToObject(
+    //     this.rabbits.children.entries[i],
+    //     this.player,
+    //     100
+    //   );
 
-      this.enemyFacingDirection(this.rabbits.children.entries[i]);
-    }
+    //   this.rabbitFacingDirection(this.rabbits.children.entries[i]);
+    // }
 
-    // this.rabbits.children.iterate(function (child) {
-    //   // this.enemyFacingDirection(child);
-    //   if (child.y > this.player.y) {
-    //     if (child.x <= this.player.x) {
-    //       // this.rabbitFacingDirection = 'back left';
-    //       child.setTexture('rabbit-back');
-    //       child.flipX = false;
-    //     } else {
-    //       // this.rabbitFacingDirection = 'back right';
-    //       child.setTexture('rabbit-back');
-    //       child.flipX = true;
-    //     }
-    //   }
-
-    //   // facing front
-    //   if (child.y <= this.player.y) {
-    //     if (child.x <= this.player.x) {
-    //       // this.facingDirection = 'front left';
-    //       child.setTexture('rabbit');
-    //       child.flipX = false;
-    //     } else {
-    //       // this.facingDirection = 'front right';
-    //       child.setTexture('rabbit');
-    //       child.flipX = true;
-    //     }
-    //   }
-    // });
+    this.rabbits.children.iterate(function (child) {
+      console.log(this);
+      child.movement(this.player);
+      child.facingDirection(this.player, 'rabbit', 'rabbit_back');
+    });
   }
 
   createGrass() {
@@ -564,7 +540,7 @@ export default class Level1Scene extends Phaser.Scene {
     }
   }
 
-  enemyFacingDirection(rabbit) {
+  rabbitFacingDirection(rabbit) {
     // facing back
     if (rabbit.y > this.player.y) {
       if (rabbit.x <= this.player.x) {
