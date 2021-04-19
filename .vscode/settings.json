@@ -1,8 +1,5 @@
 {
-  "cSpell.words": ["Anims"],
-  "files.exclude": {
-    "dist": true,
-    "node_modules": true,
-    ".cache": true
-  }
+    "cSpell.words": [
+        "Anims"
+    ]
 }
