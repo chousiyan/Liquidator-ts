@@ -32,7 +32,7 @@ export default class Level1UIScene extends Phaser.Scene {
 
     // get radiation tolerance from level 1 scene
     this.rt = this.currentLevel.rt;
-6
+    6;
     this.sunshine = this.physics.add.image(1500, 443, 'lights');
     this.sunshine.setAlpha(0.7);
     this.vignetting = this.physics.add.image(0, 0, 'vignetting').setOrigin(0);
