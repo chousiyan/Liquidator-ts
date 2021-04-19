@@ -255,38 +255,6 @@ export default class Level1Scene extends Phaser.Scene {
     // Background animations
     this.floatWood.play('float_wood', true);
 
-    // Player facing direction based on mouse position
-    this.player.checkFacingDirection();
-
-    // Player movement
-    // idle
-    if (
-      !this.cursors.left.isDown &&
-      !this.cursors.right.isDown &&
-      !this.cursors.up.isDown &&
-      !this.cursors.down.isDown
-    ) {
-      this.player.setVelocity(0);
-      this.player.revolverIdle();
-    }
-
-    // walk
-    if (this.cursors.left.isDown) {
-      this.player.setVelocityX(-this.player.speed);
-      this.player.revolverWalk();
-    } else if (this.cursors.right.isDown) {
-      this.player.setVelocityX(this.player.speed);
-      this.player.revolverWalk();
-    }
-
-    if (this.cursors.up.isDown) {
-      this.player.setVelocityY(-this.player.speed);
-      this.player.revolverWalk();
-    } else if (this.cursors.down.isDown) {
-      this.player.setVelocityY(this.player.speed);
-      this.player.revolverWalk();
-    }
-
     //mouse clicked
     let shootAngle = Phaser.Math.Angle.Between(
       this.player.x,
@@ -303,23 +271,6 @@ export default class Level1Scene extends Phaser.Scene {
         this.input.activePointer.y + this.cameras.main.scrollY
       );
     }
-
-    // Enemy AI: Always following the player
-    // for (var i = 0; i < this.rabbits.getLength(); i++) {
-    //   this.physics.moveToObject(
-    //     this.rabbits.children.entries[i],
-    //     this.player,
-    //     100
-    //   );
-
-    //   this.rabbitFacingDirection(this.rabbits.children.entries[i]);
-    // }
-
-    this.rabbits.children.iterate(function (child) {
-      console.log(this);
-      child.movement(this.player);
-      child.facingDirection(this.player, 'rabbit', 'rabbit_back');
-    });
   }
 
   createGrass() {
@@ -537,34 +488,6 @@ export default class Level1Scene extends Phaser.Scene {
       this.truck1.destroy();
       this.truck1 = this.physics.add.image(2076, 299, 'truck1');
       this.truck1.setImmovable(true);
-    }
-  }
-
-  rabbitFacingDirection(rabbit) {
-    // facing back
-    if (rabbit.y > this.player.y) {
-      if (rabbit.x <= this.player.x) {
-        // back right
-        rabbit.setTexture('rabbit-back');
-        rabbit.flipX = true;
-      } else {
-        // back left
-        rabbit.setTexture('rabbit-back');
-        rabbit.flipX = false;
-      }
-    }
-
-    // facing front
-    if (rabbit.y <= this.player.y) {
-      if (rabbit.x <= this.player.x) {
-        // front right
-        rabbit.setTexture('rabbit');
-        rabbit.flipX = true;
-      } else {
-        // front left
-        rabbit.setTexture('rabbit');
-        rabbit.flipX = false;
-      }
     }
   }
 

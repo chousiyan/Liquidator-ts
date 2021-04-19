@@ -5,6 +5,7 @@ export default class PlayerSprite extends Phaser.Physics.Arcade.Sprite {
   speed: number = 130;
   facingDirection: 'back left' | 'back right' | 'front left' | 'front right';
   isInvincible: boolean = false;
+  cursors: any;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, 'revolver-left');
@@ -15,6 +16,51 @@ export default class PlayerSprite extends Phaser.Physics.Arcade.Sprite {
     scene.physics.add.existing(this);
 
     this.setCollideWorldBounds(true);
+
+    this.cursors = this.scene.input.keyboard.addKeys({
+      up: Phaser.Input.Keyboard.KeyCodes.W,
+      down: Phaser.Input.Keyboard.KeyCodes.S,
+      left: Phaser.Input.Keyboard.KeyCodes.A,
+      right: Phaser.Input.Keyboard.KeyCodes.D,
+    });
+  }
+
+  preUpdate(time: number, delta: number) {
+    super.preUpdate(time, delta);
+
+    // Player facing direction based on mouse position
+    this.checkFacingDirection();
+
+    // Player movement
+    // idle
+    if (
+      !this.cursors.left.isDown &&
+      !this.cursors.right.isDown &&
+      !this.cursors.up.isDown &&
+      !this.cursors.down.isDown
+    ) {
+      this.setVelocity(0);
+      this.revolverIdle();
+    }
+
+    // walk
+    if (this.cursors.left.isDown) {
+      this.setVelocityX(-this.speed);
+      this.revolverWalk();
+    } else if (this.cursors.right.isDown) {
+      this.setVelocityX(this.speed);
+      this.revolverWalk();
+    }
+
+    if (this.cursors.up.isDown) {
+      this.setVelocityY(-this.speed);
+      this.revolverWalk();
+    } else if (this.cursors.down.isDown) {
+      this.setVelocityY(this.speed);
+      this.revolverWalk();
+    }
+
+    
   }
 
   checkFacingDirection() {
