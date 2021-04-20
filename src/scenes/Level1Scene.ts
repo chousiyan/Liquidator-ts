@@ -235,6 +235,9 @@ export default class Level1Scene extends Phaser.Scene {
     // Background animations
     this.floatWood.play('float_wood', true);
 
+    // Player facing direction based on mouse position
+    this.player.checkFacingDirection();
+
     //mouse clicked
     let shootAngle = Phaser.Math.Angle.Between(
       this.player.x,
