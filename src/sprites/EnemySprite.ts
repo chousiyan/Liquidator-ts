@@ -1,11 +1,11 @@
-import Phaser from 'phaser';
+import Phaser, { GameObjects } from 'phaser';
 import PlayerSprite from './PlayerSprite';
 
 export default class EnemySprite extends Phaser.Physics.Arcade.Sprite {
   // Default speed = 100
-  speed: number = 130;
+  speed = 100;
   player: PlayerSprite;
-  hp: number = 50;
+  hp = 50;
 
   constructor(scene: Phaser.Scene, x, y, key) {
     super(scene, x, y, key);
@@ -17,13 +17,13 @@ export default class EnemySprite extends Phaser.Physics.Arcade.Sprite {
     scene.physics.add.existing(this);
 
     // when the rabbit is shot by a bullet
-    // this.scene.physics.add.overlap(
-    //   this,
-    //   this.scene.weapon.bullets,
-    //   this.shot,
-    //   null,
-    //   this.scene
-    // );
+    this.scene.physics.add.overlap(
+      this,
+      this.scene.weapon.bullets,
+      this.shot,
+      null,
+      this
+    );
   }
 
   preUpdate(time: number, delta: number) {
@@ -62,11 +62,12 @@ export default class EnemySprite extends Phaser.Physics.Arcade.Sprite {
     }
   }
 
-  shot() {
-    // console.log(this.hp);
-    // this.hp -= 20;
-    // if (this.hp <= 0) {
-    //   this.destroy();
-    // }
+  shot(enemy: EnemySprite, bullet: Phaser.GameObjects.GameObject) {
+    bullet.destroy();
+    enemy.hp -= 20;
+    console.log(enemy.hp);
+    if (enemy.hp <= 0) {
+      enemy.destroy();
+    }
   }
 }
