@@ -44,6 +44,9 @@ export default class Level1Scene extends Phaser.Scene {
   // 1 = revolver, 2 = hand gun, 3 = shot gun, 4 = machine gun
   weaponType: number = 1;
   weapon: any;
+  ammo = 30;
+
+  // Sound and visual effects
   gameBgm: Phaser.Sound.BaseSound;
   revolverSound: Phaser.Sound.BaseSound;
   woundedSound: Phaser.Sound.BaseSound;
@@ -51,6 +54,8 @@ export default class Level1Scene extends Phaser.Scene {
   // revolver: 500
   firingRate = 500;
   muzzleFlash: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
+
+  deadRabbit: Phaser.Physics.Arcade.Image;
   // isRevolver = true;
   // isHandGun = false;
   // isShotGun = false;
@@ -151,6 +156,7 @@ export default class Level1Scene extends Phaser.Scene {
 
     // Player
     this.player = new PlayerSprite(this, 400, 300);
+    this.muzzleFlash = this.physics.add.image(400, 300, 'muzzle_flash');
 
     // Enemy
     // this.rabbits = this.physics.add.image(500, 650, 'rabbit');
@@ -229,7 +235,13 @@ export default class Level1Scene extends Phaser.Scene {
     //  Add a variance to the bullet angle by +- this value
     this.weapon.bulletAngleVariance = 2;
 
-    this.muzzleFlash = this.physics.add.image(400, 300, 'muzzle_flash');
+    // this.weapon.on(WeaponPlugin.events.WEAPON_FIRE, () => {
+    //   // Teleport sprite to random location
+    //   this.ammo -= 1;
+    //   this.cameras.main.shake(60, 0.002);
+    //   this.revolverSound.play();
+    //   this.muzzleFlash.setAlpha(1);
+    // });
 
     // // Score
     // let scoreText = this.add.text(16, 16, 'Score: 0', {
@@ -273,6 +285,11 @@ export default class Level1Scene extends Phaser.Scene {
         this.input.activePointer.x + this.cameras.main.scrollX,
         this.input.activePointer.y + this.cameras.main.scrollY
       );
+
+      // this.ammo -= 1;
+      // if (this.ammo <= 1) {
+      //   this.weapon = this.add.weapon(30, 'bullet');
+      // }
 
       if (this.canShoot) {
         this.gunshot();
@@ -505,6 +522,7 @@ export default class Level1Scene extends Phaser.Scene {
 
   gunshot() {
     if (this.canShoot) {
+      this.ammo -= 1;
       this.cameras.main.shake(60, 0.002);
       this.revolverSound.play();
       this.muzzleFlash.setAlpha(1);
@@ -517,6 +535,19 @@ export default class Level1Scene extends Phaser.Scene {
         loop: false,
       });
     }
+  }
+
+  rabbitDies(x, y) {
+    let deadRabbits = Phaser.Math.RND.pick(['deadRabbit1', 'deadRabbit2']);
+    this.deadRabbit = this.physics.add.image(x, y, deadRabbits);
+
+    this.tweens.add({
+      targets: this.deadRabbit,
+      alpha: 0,
+      duration: 1500,
+      yoyo: false,
+      loop: false,
+    });
   }
 
   //   this.score += 10;

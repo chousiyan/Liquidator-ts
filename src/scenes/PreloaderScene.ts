@@ -52,6 +52,8 @@ export default class PreloaderScene extends Phaser.Scene {
     // load enemy rabbit
     this.load.image('rabbit', 'assets/img/rabbit.png');
     this.load.image('rabbit-back', 'assets/img/rabbit_back.png');
+    this.load.image('deadRabbit1', 'assets/img/dead_rabbit_1.png');
+    this.load.image('deadRabbit2', 'assets/img/dead_rabbit_2.png');
 
     // load Player with default revolver image & animation
     this.load.atlas(

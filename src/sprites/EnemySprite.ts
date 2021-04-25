@@ -7,6 +7,7 @@ export default class EnemySprite extends Phaser.Physics.Arcade.Sprite {
   player: PlayerSprite;
   hp = 50;
   hitBodySound: Phaser.Sound.BaseSound;
+  deadRabbit: string;
 
   constructor(scene: Phaser.Scene, x, y, key) {
     super(scene, x, y, key);
@@ -32,6 +33,8 @@ export default class EnemySprite extends Phaser.Physics.Arcade.Sprite {
       'hit_body_3',
     ]);
     this.hitBodySound = this.scene.sound.add(hitBodySounds, { volume: 0.3 });
+
+    // this.deadRabbit = Phaser.Math.RND.pick(['deadRabbit1', 'deadRabbit2']);
   }
 
   preUpdate(time: number, delta: number) {
@@ -77,7 +80,9 @@ export default class EnemySprite extends Phaser.Physics.Arcade.Sprite {
 
     this.hitBodySound.play();
 
+    // when rabbit dies
     if (enemy.hp <= 0) {
+      this.scene.rabbitDies(this.x, this.y);
       enemy.destroy();
     }
   }
