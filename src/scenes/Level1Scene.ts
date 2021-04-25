@@ -44,9 +44,13 @@ export default class Level1Scene extends Phaser.Scene {
   // 1 = revolver, 2 = hand gun, 3 = shot gun, 4 = machine gun
   weaponType: number = 1;
   weapon: any;
-  game_bgm: Phaser.Sound.BaseSound;
-  revolver_sound: Phaser.Sound.BaseSound;
+  gameBgm: Phaser.Sound.BaseSound;
+  revolverSound: Phaser.Sound.BaseSound;
+  woundedSound: Phaser.Sound.BaseSound;
   canShoot: boolean = true;
+  // revolver: 500
+  firingRate = 500;
+  muzzleFlash: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
   // isRevolver = true;
   // isHandGun = false;
   // isShotGun = false;
@@ -88,9 +92,10 @@ export default class Level1Scene extends Phaser.Scene {
 
     this.sound.pauseOnBlur = false;
 
-    this.game_bgm = this.sound.add('game_bgm', { volume: 0.3 });
-    this.game_bgm.play();
-    this.revolver_sound = this.sound.add('revolver_sound', { volume: 1.5 });
+    this.gameBgm = this.sound.add('game_bgm', { volume: 0.3 });
+    this.gameBgm.play();
+    this.revolverSound = this.sound.add('revolver_sound', { volume: 0.5 });
+    this.woundedSound = this.sound.add('wounded', { volume: 0.3 });
 
     // Gradient Background
     let gradientBackground = this.add.graphics();
@@ -151,17 +156,18 @@ export default class Level1Scene extends Phaser.Scene {
     // this.rabbits = this.physics.add.image(500, 650, 'rabbit');
     this.rabbits = this.physics.add.group({
       classType: EnemySprite,
-      maxSize: 10,
+      maxSize: 15,
       runChildUpdate: true,
     });
     // this.rabbits = this.physics.add.group();
     // this.rabbits.maxSize = 10;
 
     // Does the rabbit collide with each other?
-    // this.physics.add.collider(this.rabbits, this.rabbits);
+    this.physics.add.collider(this.rabbits, this.rabbits);
 
+    // Generate a new rabbit every 1 second
     this.time.addEvent({
-      delay: 2000,
+      delay: 1000,
       callback: this.newRabbit,
       callbackScope: this,
       loop: true,
@@ -207,21 +213,23 @@ export default class Level1Scene extends Phaser.Scene {
     // Enable physics debugging for the bullets
     this.weapon.debugPhysics = true;
 
-    //  The bullet will be automatically killed when it leaves the world bounds by default
+    // The bullet will be automatically killed when it leaves the world bounds by default
     // this.weapon.bulletKillType = WeaponPlugin.consts.KillType.KILL_WORLD_BOUNDS;
 
-    //  The speed at which the bullet is fired
-    // Handgun at 1000
-    this.weapon.bulletSpeed = 1000;
+    // The speed at which the bullet is fired
+    // Revolver at 1000
+    this.weapon.bulletSpeed = 1200;
 
     //  Speed-up the rate of fire, allowing them to shoot 1 bullet every 500ms
-    this.weapon.fireRate = 500;
+    this.weapon.fireRate = this.firingRate;
 
     //  Tell the Weapon to track the 'player' Sprite
     this.weapon.trackSprite(this.player);
 
     //  Add a variance to the bullet angle by +- this value
     this.weapon.bulletAngleVariance = 2;
+
+    this.muzzleFlash = this.physics.add.image(400, 300, 'muzzle_flash');
 
     // // Score
     // let scoreText = this.add.text(16, 16, 'Score: 0', {
@@ -238,13 +246,25 @@ export default class Level1Scene extends Phaser.Scene {
     // Player facing direction based on mouse position
     this.player.checkFacingDirection();
 
-    //mouse clicked
     let shootAngle = Phaser.Math.Angle.Between(
       this.player.x,
       this.player.y,
       this.mouseInput.x,
       this.mouseInput.y
     );
+
+    this.muzzleFlash.setAlpha(0);
+    this.muzzleFlash.y = this.player.y + 6;
+    if (
+      this.player.facingDirection == 'back left' ||
+      this.player.facingDirection == 'front left'
+    ) {
+      this.muzzleFlash.x = this.player.x - 48;
+      this.muzzleFlash.flipX = false;
+    } else {
+      this.muzzleFlash.x = this.player.x + 48;
+      this.muzzleFlash.flipX = true;
+    }
 
     if (this.mouse.isDown) {
       //  Because our bullet is drawn facing up, we need to offset its rotation:
@@ -253,7 +273,10 @@ export default class Level1Scene extends Phaser.Scene {
         this.input.activePointer.x + this.cameras.main.scrollX,
         this.input.activePointer.y + this.cameras.main.scrollY
       );
-      this.gunshotSound();
+
+      if (this.canShoot) {
+        this.gunshot();
+      }
     }
   }
 
@@ -415,9 +438,10 @@ export default class Level1Scene extends Phaser.Scene {
   bitten() {
     if (!this.player.isInvincible && this.rt < 100) {
       this.rt += this.damage;
-      console.log("I'm bitten!", this.rt);
 
       this.cameras.main.shake(300, 0.01);
+
+      this.woundedSound.play();
 
       //We now need to make the player invincible
       this.player.isInvincible = true;
@@ -479,13 +503,15 @@ export default class Level1Scene extends Phaser.Scene {
     this.canShoot = true;
   }
 
-  gunshotSound() {
+  gunshot() {
     if (this.canShoot) {
-      this.revolver_sound.play();
+      this.cameras.main.shake(60, 0.002);
+      this.revolverSound.play();
+      this.muzzleFlash.setAlpha(1);
 
       this.canShoot = false;
       this.time.addEvent({
-        delay: 500, // ms
+        delay: this.firingRate, // ms
         callback: this.restoreCanShoot,
         callbackScope: this,
         loop: false,

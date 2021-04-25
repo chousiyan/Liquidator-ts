@@ -28,6 +28,8 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image('death', 'assets/img/UI/death.png');
     this.load.image('end_screen', 'assets/img/UI/end_screen.png');
 
+    this.load.image('muzzle_flash', 'assets/img/muzzle_flash.png');
+
     // load background animations
     this.load.atlas(
       'float_wood',
@@ -80,6 +82,10 @@ export default class PreloaderScene extends Phaser.Scene {
     // audio
     this.load.audio('game_bgm', ['assets/audio/game_bgm.mp3']);
     this.load.audio('revolver_sound', ['assets/audio/revolver.mp3']);
+    this.load.audio('hit_body_1', ['assets/audio/hit_body_1.mp3']);
+    this.load.audio('hit_body_2', ['assets/audio/hit_body_2.mp3']);
+    this.load.audio('hit_body_3', ['assets/audio/hit_body_3.mp3']);
+    this.load.audio('wounded', ['assets/audio/wounded.mp3']);
   }
 
   create() {

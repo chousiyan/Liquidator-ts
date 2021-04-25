@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 
 export default class PlayerSprite extends Phaser.Physics.Arcade.Sprite {
   // Default speed = 130
-  speed: number = 130;
+  speed: number = 220;
   facingDirection: 'back left' | 'back right' | 'front left' | 'front right';
   isInvincible: boolean = false;
   cursors: Phaser.Input.Keyboard.KeyboardPlugin;

@@ -3,9 +3,10 @@ import PlayerSprite from './PlayerSprite';
 
 export default class EnemySprite extends Phaser.Physics.Arcade.Sprite {
   // Default speed = 100
-  speed = 100;
+  speed = 200;
   player: PlayerSprite;
   hp = 50;
+  hitBodySound: Phaser.Sound.BaseSound;
 
   constructor(scene: Phaser.Scene, x, y, key) {
     super(scene, x, y, key);
@@ -24,6 +25,13 @@ export default class EnemySprite extends Phaser.Physics.Arcade.Sprite {
       null,
       this
     );
+
+    let hitBodySounds = Phaser.Math.RND.pick([
+      'hit_body_1',
+      'hit_body_2',
+      'hit_body_3',
+    ]);
+    this.hitBodySound = this.scene.sound.add(hitBodySounds, { volume: 0.3 });
   }
 
   preUpdate(time: number, delta: number) {
@@ -64,8 +72,11 @@ export default class EnemySprite extends Phaser.Physics.Arcade.Sprite {
 
   shot(enemy: EnemySprite, bullet: Phaser.GameObjects.GameObject) {
     bullet.destroy();
+
     enemy.hp -= 20;
-    console.log(enemy.hp);
+
+    this.hitBodySound.play();
+
     if (enemy.hp <= 0) {
       enemy.destroy();
     }

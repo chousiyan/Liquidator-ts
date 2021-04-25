@@ -41,12 +41,13 @@ export default class Level1UIScene extends Phaser.Scene {
 
     // Make ammo bar
     this.makeBarBackground(850, 936, 280, 46, 6, 0xb8d1c3, 8);
-    this.ammoBar = this.makeBar(850, 936, 280, 46, 6, 0x74a59b, 8);
+    // this.ammoBar = this.makeBar(850, 936, 280, 46, 6, 0x74a59b, 8);
+    this.ammoBar = this.makeBar(850, 936, 280, 46, 6, 0x93aa9c, 8);
 
     let ammoIcon = this.physics.add.image(820, 966, 'ammoIcon');
     ammoIcon.scale = 0.7;
 
-    this.ammoText = this.add.text(880, 886, 'HANDGUN', {
+    this.ammoText = this.add.text(880, 886, 'REVOLVER', {
       fontFamily: 'Staatliches',
       fontSize: '40px',
       align: 'center',
@@ -62,6 +63,13 @@ export default class Level1UIScene extends Phaser.Scene {
         color: '#b8d1c3',
       }
     );
+    // Because default weapon has infinite ammo
+    this.add.text(1080, 936, '∞', {
+      fontFamily: 'Staatliches',
+      fontSize: '50px',
+      align: 'center',
+      color: '#b8d1c3',
+    });
 
     // Make rt bar
     this.makeBarBackground(130, 60, 320, 60, 0, 0x3d3c2a, 24);
