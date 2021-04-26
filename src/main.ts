@@ -3,6 +3,7 @@ import Phaser from 'phaser';
 import PreloaderScene from './scenes/PreloaderScene';
 import Level1Scene from './scenes/Level1Scene';
 import Level1UIScene from './scenes/Level1UIScene';
+import StartScene from './scenes/StartScene';
 
 const config = {
   // type: Phaser.AUTO,
@@ -23,7 +24,7 @@ const config = {
       debug: false,
     },
   },
-  scene: [PreloaderScene, Level1Scene, Level1UIScene],
+  scene: [PreloaderScene, StartScene, Level1Scene, Level1UIScene],
 };
 
 export default new Phaser.Game(config);

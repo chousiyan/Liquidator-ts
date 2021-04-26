@@ -114,9 +114,6 @@ export default class Level1Scene extends Phaser.Scene {
     );
     gradientBackground.fillRect(-200, -200, 2708, 1878);
 
-    //  Background
-    // this.add.image(0, 0, 'map-background').setOrigin(0);
-
     // Pond
     this.pond = this.physics.add.image(1155, 742, 'pond');
     this.pond.setImmovable(true);
@@ -160,7 +157,7 @@ export default class Level1Scene extends Phaser.Scene {
     let posY;
     let a = Phaser.Math.Between(100, 700);
     let b = Phaser.Math.Between(700, 1426);
-    let c = Phaser.Math.Between(1600, 2308);
+    let c = Phaser.Math.Between(1600, 2290);
     let d = Phaser.Math.Between(100, 450);
     let e = Phaser.Math.Between(996, 1430);
     posX = Phaser.Math.RND.pick([a, b, c]);
