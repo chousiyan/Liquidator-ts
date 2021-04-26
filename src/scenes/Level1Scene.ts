@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { WeaponPlugin } from 'phaser3-weapon-plugin';
+import * as WeaponPlugin from 'phaser3-weapon-plugin';
 
 import createPlayerAnims from '../anims/PlayerAnims';
 import createBackgroundAnims from '../anims/BackgroundAnims';
@@ -82,7 +82,7 @@ export default class Level1Scene extends Phaser.Scene {
     // Install weapon plugin into a scene
     this.plugins.installScenePlugin(
       'WeaponPlugin',
-      WeaponPlugin,
+      WeaponPlugin.WeaponPlugin,
       'weapons',
       this
     );
@@ -214,13 +214,13 @@ export default class Level1Scene extends Phaser.Scene {
     // this.bullet = this.physics.add.image(960, 540, 'bullet');
 
     //  Creates 30 bullets, using the 'bullet' graphic
-    this.weapon = this.add.weapon(30, 'bullet');
+    this.weapon = this.add.weapon(-1, 'bullet');
 
     // Enable physics debugging for the bullets
     this.weapon.debugPhysics = true;
 
     // The bullet will be automatically killed when it leaves the world bounds by default
-    // this.weapon.bulletKillType = WeaponPlugin.consts.KillType.KILL_WORLD_BOUNDS;
+    this.weapon.bulletKillType = WeaponPlugin.consts.KillType.KILL_WORLD_BOUNDS;
 
     // The speed at which the bullet is fired
     // Revolver at 1000
@@ -235,13 +235,13 @@ export default class Level1Scene extends Phaser.Scene {
     //  Add a variance to the bullet angle by +- this value
     this.weapon.bulletAngleVariance = 2;
 
-    // this.weapon.on(WeaponPlugin.events.WEAPON_FIRE, () => {
-    //   // Teleport sprite to random location
-    //   this.ammo -= 1;
-    //   this.cameras.main.shake(60, 0.002);
-    //   this.revolverSound.play();
-    //   this.muzzleFlash.setAlpha(1);
-    // });
+    this.weapon.on(WeaponPlugin.events.WEAPON_FIRE, () => {
+      // Teleport sprite to random location
+      this.ammo -= 1;
+      this.cameras.main.shake(60, 0.002);
+      this.revolverSound.play();
+      this.muzzleFlash.setAlpha(1);
+    });
 
     // // Score
     // let scoreText = this.add.text(16, 16, 'Score: 0', {
