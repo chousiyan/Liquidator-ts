@@ -5,6 +5,7 @@ import createPlayerAnims from '../anims/PlayerAnims';
 import createBackgroundAnims from '../anims/BackgroundAnims';
 import PlayerSprite from '../sprites/PlayerSprite';
 import EnemySprite from '../sprites/EnemySprite';
+import { randomInt } from 'node:crypto';
 
 export default class Level1Scene extends Phaser.Scene {
   player: PlayerSprite;
@@ -154,8 +155,21 @@ export default class Level1Scene extends Phaser.Scene {
 
     // this.grassGroup.create(400, 568, 'ground').setScale(2).refreshBody();
 
-    // Player
-    this.player = new PlayerSprite(this, 400, 300);
+    // Player, random position
+    let posX;
+    let posY;
+    let a = Phaser.Math.Between(100, 700);
+    let b = Phaser.Math.Between(700, 1426);
+    let c = Phaser.Math.Between(1600, 2308);
+    let d = Phaser.Math.Between(100, 450);
+    let e = Phaser.Math.Between(996, 1430);
+    posX = Phaser.Math.RND.pick([a, b, c]);
+    if (posX < 700 || posX > 1600) {
+      posY = Phaser.Math.Between(100, 1430);
+    } else if (posX < 1426) {
+      posY = Phaser.Math.RND.pick([d, e]);
+    }
+    this.player = new PlayerSprite(this, posX, posY);
     this.muzzleFlash = this.physics.add.image(400, 300, 'muzzle_flash');
 
     // Enemy
