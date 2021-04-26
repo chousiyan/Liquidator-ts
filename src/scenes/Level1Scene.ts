@@ -237,7 +237,6 @@ export default class Level1Scene extends Phaser.Scene {
 
     this.weapon.on(WeaponPlugin.events.WEAPON_FIRE, () => {
       // Teleport sprite to random location
-      this.ammo -= 1;
       this.cameras.main.shake(60, 0.002);
       this.revolverSound.play();
       this.muzzleFlash.setAlpha(1);
@@ -281,19 +280,11 @@ export default class Level1Scene extends Phaser.Scene {
     if (this.mouse.isDown) {
       //  Because our bullet is drawn facing up, we need to offset its rotation:
       this.weapon.bulletAngleOffset = shootAngle + 180;
+
       this.weapon.fireAtXY(
         this.input.activePointer.x + this.cameras.main.scrollX,
         this.input.activePointer.y + this.cameras.main.scrollY
       );
-
-      // this.ammo -= 1;
-      // if (this.ammo <= 1) {
-      //   this.weapon = this.add.weapon(30, 'bullet');
-      // }
-
-      if (this.canShoot) {
-        this.gunshot();
-      }
     }
   }
 
@@ -513,27 +504,6 @@ export default class Level1Scene extends Phaser.Scene {
       this.truck1.destroy();
       this.truck1 = this.physics.add.image(2076, 299, 'truck1');
       this.truck1.setImmovable(true);
-    }
-  }
-
-  restoreCanShoot() {
-    this.canShoot = true;
-  }
-
-  gunshot() {
-    if (this.canShoot) {
-      this.ammo -= 1;
-      this.cameras.main.shake(60, 0.002);
-      this.revolverSound.play();
-      this.muzzleFlash.setAlpha(1);
-
-      this.canShoot = false;
-      this.time.addEvent({
-        delay: this.firingRate, // ms
-        callback: this.restoreCanShoot,
-        callbackScope: this,
-        loop: false,
-      });
     }
   }
 
