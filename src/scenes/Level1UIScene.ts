@@ -200,6 +200,8 @@ export default class Level1UIScene extends Phaser.Scene {
     // make player invisible
     this.currentLevel.player.setAlpha(0);
 
+    this.scene.pause('level-1');
+
     // go back to start screen after 5 seconds
   }
 }
