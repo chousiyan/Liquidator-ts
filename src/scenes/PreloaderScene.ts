@@ -30,7 +30,9 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image('title', 'assets/img/UI/title.png');
     this.load.image('playButton', 'assets/img/UI/play_button.png');
     this.load.image('retryButton', 'assets/img/UI/retry_button.png');
+    this.load.image('shopButton', 'assets/img/UI/shop_button.png');
     this.load.image('playerRevolver', 'assets/img/UI/player_revolver.png');
+    this.load.image('weaponUpgrade', 'assets/img/UI/weapon_upgrade.png');
 
     this.load.image('muzzle_flash', 'assets/img/muzzle_flash.png');
 

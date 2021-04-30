@@ -9,12 +9,13 @@ export default class StartScene extends Phaser.Scene {
   vignetting: Phaser.Physics.Arcade.Image;
   title: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
   playButton: Phaser.Physics.Arcade.Image;
-  retryButton: Phaser.Physics.Arcade.Image;
+  // retryButton: Phaser.Physics.Arcade.Image;
   player: Phaser.Physics.Arcade.Image;
-  weaponSlot_1: Phaser.GameObjects.Graphics;
-  weaponSlot_2: Phaser.GameObjects.Graphics;
-  weaponSlot_3: Phaser.GameObjects.Graphics;
-  weaponUpgrade_1: Phaser.GameObjects.Graphics;
+  weaponUpgrade: Phaser.Physics.Arcade.Image;
+  // weaponSlot_1: Phaser.GameObjects.Graphics;
+  // weaponSlot_2: Phaser.GameObjects.Graphics;
+  // weaponSlot_3: Phaser.GameObjects.Graphics;
+  // weaponUpgrade_1: Phaser.GameObjects.Graphics;
   startBgm: Phaser.Sound.BaseSound;
 
   constructor() {
@@ -46,11 +47,11 @@ export default class StartScene extends Phaser.Scene {
 
     this.player = this.physics.add.image(1430, 541, 'playerRevolver');
 
-    this.playButton = this.physics.add.image(1635, 925, 'playButton');
-    this.retryButton = this.physics.add.image(1315, 925, 'retryButton');
+    this.playButton = this.physics.add.image(1475, 925, 'playButton');
+    // this.retryButton = this.physics.add.image(1315, 925, 'retryButton');
 
     this.playButton.setInteractive();
-    this.retryButton.setInteractive();
+    // this.retryButton.setInteractive();
 
     // Start the main game.
     this.playButton
@@ -63,26 +64,28 @@ export default class StartScene extends Phaser.Scene {
       .on('pointerover', () => this.playButtonHoverState())
       .on('pointerout', () => this.playButtonRestState());
 
-    this.weaponSlot_1 = this.add.graphics();
-    this.weaponSlot_1.fillStyle(0xc4c39f, 1);
-    this.weaponSlot_1.fillRoundedRect(65, 298, 916, 210, 20);
+    this.weaponUpgrade = this.physics.add.image(523, 645, 'weaponUpgrade');
+    // for future weapon upgrade
+    // this.weaponSlot_1 = this.add.graphics();
+    // this.weaponSlot_1.fillStyle(0xc4c39f, 1);
+    // this.weaponSlot_1.fillRoundedRect(65, 298, 916, 210, 20);
 
-    this.weaponSlot_2 = this.add.graphics();
-    this.weaponSlot_2.fillStyle(0xc4c39f, 1);
-    this.weaponSlot_2.fillRoundedRect(65, 540, 916, 210, 20);
+    // this.weaponSlot_2 = this.add.graphics();
+    // this.weaponSlot_2.fillStyle(0xc4c39f, 1);
+    // this.weaponSlot_2.fillRoundedRect(65, 540, 916, 210, 20);
 
-    this.weaponSlot_2 = this.add.graphics();
-    this.weaponSlot_2.fillStyle(0xc4c39f, 1);
-    this.weaponSlot_2.fillRoundedRect(65, 782, 916, 210, 20);
+    // this.weaponSlot_2 = this.add.graphics();
+    // this.weaponSlot_2.fillStyle(0xc4c39f, 1);
+    // this.weaponSlot_2.fillRoundedRect(65, 782, 916, 210, 20);
 
-    this.weaponUpgrade_1 = this.add.graphics();
-    this.weaponUpgrade_1.fillStyle(0x82876b, 1);
-    this.weaponUpgrade_1.fillRoundedRect(690, 298, 291, 210, {
-      tl: 0,
-      tr: 20,
-      bl: 0,
-      br: 20,
-    });
+    // this.weaponUpgrade_1 = this.add.graphics();
+    // this.weaponUpgrade_1.fillStyle(0x82876b, 1);
+    // this.weaponUpgrade_1.fillRoundedRect(690, 298, 291, 210, {
+    //   tl: 0,
+    //   tr: 20,
+    //   bl: 0,
+    //   br: 20,
+    // });
   }
 
   update() {}

@@ -53,7 +53,7 @@ export default class Level1Scene extends Phaser.Scene {
   woundedSound: Phaser.Sound.BaseSound;
   canShoot: boolean = true;
   // revolver: 500
-  firingRate = 500;
+  firingRate = 200;
   muzzleFlash: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
 
   deadRabbit: Phaser.Physics.Arcade.Image;
@@ -184,7 +184,7 @@ export default class Level1Scene extends Phaser.Scene {
 
     // Generate a new rabbit every 1 second
     this.time.addEvent({
-      delay: 1000,
+      delay: 250,
       callback: this.newRabbit,
       callbackScope: this,
       loop: true,
