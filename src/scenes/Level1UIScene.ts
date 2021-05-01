@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-import EnemySprite from '../sprites/EnemySprite';
 
 export default class Level1UIScene extends Phaser.Scene {
   sunshine: Phaser.Physics.Arcade.Image;
@@ -17,22 +16,8 @@ export default class Level1UIScene extends Phaser.Scene {
   haveRadiation1 = false;
   haveRadiation2 = false;
 
-  end_screen: Phaser.Physics.Arcade.Image;
-  death: Phaser.Physics.Arcade.Image;
-
-  rabbits;
-
   score = 0;
   scoreText: Phaser.GameObjects.Text;
-  lastScore: number;
-  bestScore = 0;
-  lastScoreText: Phaser.GameObjects.Text;
-  lastScoreNumber: Phaser.GameObjects.Text;
-  bestScoreText: Phaser.GameObjects.Text;
-  bestScoreNumber: Phaser.GameObjects.Text;
-
-  shopButton: Phaser.Physics.Arcade.Image;
-  retryButton: Phaser.Physics.Arcade.Image;
 
   currentLevel;
 
@@ -47,7 +32,6 @@ export default class Level1UIScene extends Phaser.Scene {
 
     // get radiation tolerance from level 1 scene
     this.rt = this.currentLevel.rt;
-    6;
     this.sunshine = this.physics.add.image(1500, 443, 'lights');
     this.sunshine.setAlpha(0.7);
     this.vignetting = this.physics.add.image(0, 0, 'vignetting').setOrigin(0);
@@ -92,36 +76,12 @@ export default class Level1UIScene extends Phaser.Scene {
     this.rtIcon = this.physics.add.image(110, 90, 'rtIcon');
     // ammoIcon.scale = 0.7;
 
-    // Game Over Screen
-    this.end_screen = this.physics.add.image(0, 0, 'end_screen').setOrigin(0);
-    this.end_screen.setAlpha(0);
-    this.death = this.physics.add.image(974, 339, 'death');
-    this.death.setAlpha(0);
-
     // Score
-    this.scoreText = this.add.text(1500, 200, '0', {
+    this.scoreText = this.add.text(1810, 64, '0', {
       fontFamily: 'Impact',
       fontSize: '60px',
       align: 'right',
       color: '#ffffff',
-    });
-
-    this.rabbits = this.currentLevel.rabbits;
-
-    this.shopButton = this.physics.add.image(830, 840, 'shopButton');
-    this.retryButton = this.physics.add.image(1130, 840, 'retryButton');
-    this.shopButton.visible = false;
-    this.retryButton.visible = false;
-
-    this.retryButton.on('pointerdown', () => {
-      this.currentLevel.gameBgm.stop();
-      this.scene.start('level-1');
-      this.scene.start('UI');
-    });
-    this.shopButton.on('pointerdown', () => {
-      this.scene.stop('level-1');
-      this.currentLevel.gameBgm.stop();
-      this.scene.start('start');
     });
   }
 
@@ -130,6 +90,8 @@ export default class Level1UIScene extends Phaser.Scene {
     // this.setValue(this.ammoBar, 850, 936, 280, 46, 6, 0x74a59b, 8, 1);
 
     this.newRt = this.currentLevel.rt;
+
+    // update radiation tolerance bar
     if (this.newRt > this.rt && this.newRt <= 100) {
       this.rt = this.currentLevel.rt;
       this.setValue(
@@ -163,7 +125,7 @@ export default class Level1UIScene extends Phaser.Scene {
 
     // game over
     if (this.newRt >= 100) {
-      this.gameOver();
+      this.currentLevel.gameOver();
     }
   }
 
@@ -237,57 +199,5 @@ export default class Level1UIScene extends Phaser.Scene {
 
   countRabbits() {
     this.score += 1;
-  }
-
-  gameOver() {
-    // display gameOver screen
-    this.end_screen.setAlpha(1);
-    this.death.setAlpha(1);
-    this.newRt = 100;
-    this.rtIcon.destroy();
-
-    // make player invisible
-    this.currentLevel.player.setAlpha(0);
-
-    // display score
-    this.lastScore = this.score;
-    if (this.lastScore > this.bestScore) {
-      this.bestScore = this.lastScore;
-    }
-
-    this.retryButton.setInteractive();
-    this.shopButton.setInteractive();
-    this.retryButton.visible = true;
-    this.shopButton.visible = true;
-
-    this.lastScoreText = this.add.text(650, 630, 'Last', {
-      fontFamily: 'Staatliches',
-      fontSize: '84px',
-      align: 'center',
-      color: '#ffffff',
-    });
-    this.lastScoreNumber = this.add.text(800, 630, this.lastScore.toString(), {
-      fontFamily: 'Impact',
-      fontSize: '84px',
-      align: 'left',
-      color: '#ffffff',
-    });
-    this.bestScoreText = this.add.text(900, 630, 'Best', {
-      fontFamily: 'Staatliches',
-      fontSize: '84px',
-      align: 'center',
-      color: '#ffffff',
-    });
-    this.lastScoreNumber = this.add.text(1150, 630, this.bestScore.toString(), {
-      fontFamily: 'Impact',
-      fontSize: '84px',
-      align: 'left',
-      color: '#ffffff',
-    });
-
-    this.scene.pause('level-1');
-    this.scene.pause('UI');
-
-    // go back to start screen after 5 seconds
   }
 }
