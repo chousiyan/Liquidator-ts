@@ -8,7 +8,7 @@ import EnemySprite from '../sprites/EnemySprite';
 
 export default class Level1Scene extends Phaser.Scene {
   player: PlayerSprite;
-  rt = 0;
+  rt = 80;
 
   rabbits: Phaser.Physics.Arcade.Group;
 
@@ -76,9 +76,7 @@ export default class Level1Scene extends Phaser.Scene {
   //   Phaser.Scene.call(this, { key: 'level1Scene', active: true });
   // }
 
-  preload() {}
-
-  create() {
+  preload() {
     // Install weapon plugin into a scene
     this.plugins.installScenePlugin(
       'WeaponPlugin',
@@ -86,6 +84,11 @@ export default class Level1Scene extends Phaser.Scene {
       'weapons',
       this
     );
+  }
+
+  create() {
+    // Default Values
+    this.rt = 80;
 
     // Animations
     createPlayerAnims(this.anims);
@@ -298,12 +301,18 @@ export default class Level1Scene extends Phaser.Scene {
     }
   }
 
+  restart() {
+    this.plugins.removeScenePlugin('WeaponPlugin');
+    this.scene.restart();
+  }
+
   createGrass() {
     const darkGrass_1 = {
       key: 'grass_dark',
       frame: 'grass_dark_00.png',
       x: { randInt: [0, 700] },
       y: { randInt: [0, 1478] },
+      rotation: { randInt: [0, 180] },
       scale: { randFloat: [0.4, 0.8] },
       alpha: { randFloat: [0.4, 1] },
       anims: {
@@ -434,6 +443,7 @@ export default class Level1Scene extends Phaser.Scene {
         },
       },
     };
+
     // Make a few sprites using the config above
     for (let i = 0; i < 5; i++) {
       this.make.sprite(darkGrass_1);
@@ -441,6 +451,7 @@ export default class Level1Scene extends Phaser.Scene {
       this.make.sprite(darkGrass_4);
       this.make.sprite(lightGrass_4);
     }
+
     for (let i = 0; i < 3; i++) {
       this.make.sprite(darkGrass_2);
       this.make.sprite(lightGrass_2);

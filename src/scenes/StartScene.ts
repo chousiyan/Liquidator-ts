@@ -9,14 +9,11 @@ export default class StartScene extends Phaser.Scene {
   vignetting: Phaser.Physics.Arcade.Image;
   title: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
   playButton: Phaser.Physics.Arcade.Image;
-  // retryButton: Phaser.Physics.Arcade.Image;
   player: Phaser.Physics.Arcade.Image;
   weaponUpgrade: Phaser.Physics.Arcade.Image;
-  // weaponSlot_1: Phaser.GameObjects.Graphics;
-  // weaponSlot_2: Phaser.GameObjects.Graphics;
-  // weaponSlot_3: Phaser.GameObjects.Graphics;
-  // weaponUpgrade_1: Phaser.GameObjects.Graphics;
   startBgm: Phaser.Sound.BaseSound;
+
+  hoverColor = 0xf8e14b;
 
   constructor() {
     super('start');
@@ -91,7 +88,7 @@ export default class StartScene extends Phaser.Scene {
   update() {}
 
   playButtonHoverState() {
-    this.playButton.setTint(0xf8e14b);
+    this.playButton.setTint(this.hoverColor);
   }
 
   playButtonRestState() {

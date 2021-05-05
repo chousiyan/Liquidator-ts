@@ -50,16 +50,11 @@ export default class GameOverScene extends Phaser.Scene {
     this.shopButton.setInteractive();
 
     this.retryButton.on('pointerdown', () => {
-      // reset score
-      this.UIScene.rt = 0;
-      this.UIScene.newRt = 0;
-
-      this.scene.stop('level-1');
-      this.level1.destroyPlugin();
-      this.scene.stop('game-over');
-      this.scene.start('level-1');
-      this.scene.launch('UI');
+      this.scene.stop();
+      this.level1.restart();
+      this.UIScene.restart();
     });
+
     this.shopButton.on('pointerdown', () => {
       this.scene.stop('game-over');
       this.scene.stop('level-1');

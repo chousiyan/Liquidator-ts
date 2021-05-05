@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import Level1Scene from './Level1Scene';
 
 export default class Level1UIScene extends Phaser.Scene {
   sunshine: Phaser.Physics.Arcade.Image;
@@ -18,8 +19,7 @@ export default class Level1UIScene extends Phaser.Scene {
 
   score = 0;
   scoreText: Phaser.GameObjects.Text;
-
-  currentLevel;
+  currentLevel: Level1Scene;
 
   constructor() {
     super('UI');
@@ -28,10 +28,16 @@ export default class Level1UIScene extends Phaser.Scene {
   preload() {}
 
   create() {
-    this.currentLevel = this.scene.get('level-1');
+    // Default Values
+    this.rt = 80;
+    this.newRt = 0;
+
+    this.currentLevel = this.scene.get('level-1') as Level1Scene;
 
     // get radiation tolerance from level 1 scene
     this.rt = this.currentLevel.rt;
+    console.log(this.currentLevel.rt);
+
     this.sunshine = this.physics.add.image(1500, 443, 'lights');
     this.sunshine.setAlpha(0.7);
     this.vignetting = this.physics.add.image(0, 0, 'vignetting').setOrigin(0);
@@ -127,6 +133,10 @@ export default class Level1UIScene extends Phaser.Scene {
     if (this.newRt >= 100) {
       this.currentLevel.gameOver();
     }
+  }
+
+  restart() {
+    this.scene.restart();
   }
 
   makeBarBackground(
