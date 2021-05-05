@@ -1,4 +1,6 @@
 import Phaser from 'phaser';
+import Level1Scene from './Level1Scene';
+import Level1UIScene from './Level1UIScene';
 
 export default class GameOverScene extends Phaser.Scene {
   end_screen: Phaser.Physics.Arcade.Image;
@@ -14,8 +16,8 @@ export default class GameOverScene extends Phaser.Scene {
   shopButton: Phaser.Physics.Arcade.Image;
   retryButton: Phaser.Physics.Arcade.Image;
 
-  UIScene: Phaser.Scene;
-  level1: Phaser.Scene;
+  UIScene: Level1UIScene;
+  level1: Level1Scene;
 
   gameOverBgm: Phaser.Sound.BaseSound;
 
@@ -26,8 +28,8 @@ export default class GameOverScene extends Phaser.Scene {
   preload() {}
 
   create() {
-    this.UIScene = this.scene.get('UI');
-    this.level1 = this.scene.get('level-1');
+    this.UIScene = this.scene.get('UI') as Level1UIScene;
+    this.level1 = this.scene.get('level-1') as Level1Scene;
 
     // Game Over Screen
     this.end_screen = this.physics.add.image(0, 0, 'end_screen').setOrigin(0);
@@ -48,16 +50,11 @@ export default class GameOverScene extends Phaser.Scene {
     this.shopButton.setInteractive();
 
     this.retryButton.on('pointerdown', () => {
-      // reset score
-      this.UIScene.rt = 0;
-      this.UIScene.newRt = 0;
-
-      this.scene.stop('level-1');
-      this.level1.destroyPlugin();
-      this.scene.stop('game-over');
-      this.scene.start('level-1');
-      this.scene.launch('UI');
+      this.scene.stop();
+      this.level1.restart();
+      this.UIScene.restart();
     });
+
     this.shopButton.on('pointerdown', () => {
       this.scene.stop('game-over');
       this.scene.stop('level-1');
