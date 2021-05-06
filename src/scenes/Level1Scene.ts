@@ -8,7 +8,7 @@ import EnemySprite from '../sprites/EnemySprite';
 
 export default class Level1Scene extends Phaser.Scene {
   player: PlayerSprite;
-  rt = 80;
+  rt = 0;
 
   rabbits: Phaser.Physics.Arcade.Group;
 
@@ -88,7 +88,7 @@ export default class Level1Scene extends Phaser.Scene {
 
   create() {
     // Default Values
-    this.rt = 80;
+    this.rt = 0;
 
     // Animations
     createPlayerAnims(this.anims);

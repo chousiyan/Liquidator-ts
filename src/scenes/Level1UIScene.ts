@@ -29,7 +29,7 @@ export default class Level1UIScene extends Phaser.Scene {
 
   create() {
     // Default Values
-    this.rt = 80;
+    this.rt = 0;
     this.newRt = 0;
 
     this.currentLevel = this.scene.get('level-1') as Level1Scene;
