@@ -312,7 +312,6 @@ export default class Level1Scene extends Phaser.Scene {
       frame: 'grass_dark_00.png',
       x: { randInt: [0, 700] },
       y: { randInt: [0, 1478] },
-      rotation: { randInt: [0, 180] },
       scale: { randFloat: [0.4, 0.8] },
       alpha: { randFloat: [0.4, 1] },
       anims: {
