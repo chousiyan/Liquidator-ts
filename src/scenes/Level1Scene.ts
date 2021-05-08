@@ -56,25 +56,15 @@ export default class Level1Scene extends Phaser.Scene {
   muzzleFlash: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
 
   deadRabbit: Phaser.Physics.Arcade.Image;
+  // for future weapon types
   // isRevolver = true;
   // isHandGun = false;
   // isShotGun = false;
   // isMachineGun = false;
 
-  // platforms;
-  // stars;
-  // bombs;
-  // gamerOver = false;
-  // score = 0;
-  // scoreText;
-
   constructor() {
     super('level-1');
   }
-
-  // level1Scene() {
-  //   Phaser.Scene.call(this, { key: 'level1Scene', active: true });
-  // }
 
   preload() {
     // Install weapon plugin into a scene
@@ -94,7 +84,7 @@ export default class Level1Scene extends Phaser.Scene {
     createPlayerAnims(this.anims);
     createBackgroundAnims(this.anims);
 
-    //  Set the camera and physics bounds to be the size of 4x4 bg images
+    // Set the camera and physics bounds
     this.cameras.main.setBounds(0, 0, 2308, 1478);
     this.physics.world.setBounds(0, 0, 2308, 1478);
 
@@ -172,14 +162,11 @@ export default class Level1Scene extends Phaser.Scene {
     this.muzzleFlash = this.physics.add.image(400, 300, 'muzzle_flash');
 
     // Enemy
-    // this.rabbits = this.physics.add.image(500, 650, 'rabbit');
     this.rabbits = this.physics.add.group({
       classType: EnemySprite,
       maxSize: 15,
       runChildUpdate: true,
     });
-    // this.rabbits = this.physics.add.group();
-    // this.rabbits.maxSize = 10;
 
     // Does the rabbit collide with each other?
     this.physics.add.collider(this.rabbits, this.rabbits);
@@ -223,9 +210,6 @@ export default class Level1Scene extends Phaser.Scene {
     //for mouse click event
     this.mouse = this.input.mousePointer;
 
-    // // fire bullet
-    // this.bullet = this.physics.add.image(960, 540, 'bullet');
-
     //  Creates 30 bullets, using the 'bullet' graphic
     this.weapon = this.add.weapon(-1, 'bullet');
 
@@ -254,13 +238,6 @@ export default class Level1Scene extends Phaser.Scene {
       this.revolverSound.play();
       this.muzzleFlash.setAlpha(1);
     });
-
-    // // Score
-    // let scoreText = this.add.text(16, 16, 'Score: 0', {
-    //   fontSize: '32px',
-    //   fill: '#000',
-    //   fontFamily: 'Staatliches',
-    // });
   }
 
   update() {

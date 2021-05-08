@@ -46,6 +46,7 @@ export default class Level1UIScene extends Phaser.Scene {
 
     // Make ammo bar
     this.makeBarBackground(850, 936, 280, 46, 6, 0xb8d1c3, 8);
+    // for ammoBar color of limited ammo
     // this.ammoBar = this.makeBar(850, 936, 280, 46, 6, 0x74a59b, 8);
     this.ammoBar = this.makeBar(850, 936, 280, 46, 6, 0x93aa9c, 8);
 
@@ -80,7 +81,6 @@ export default class Level1UIScene extends Phaser.Scene {
     this.makeBarBackground(130, 60, 320, 60, 0, 0x3d3c2a, 24);
     this.rtBar = this.makeBar(130, 60, 0, 60, 0, 0xf6da1e, 30);
     this.rtIcon = this.physics.add.image(110, 90, 'rtIcon');
-    // ammoIcon.scale = 0.7;
 
     // Score
     this.scoreText = this.add.text(1810, 64, '0', {
@@ -92,9 +92,7 @@ export default class Level1UIScene extends Phaser.Scene {
   }
 
   update() {
-    // update ammo bar
-    // this.setValue(this.ammoBar, 850, 936, 280, 46, 6, 0x74a59b, 8, 1);
-
+    // update ammo bar without checking every update
     this.newRt = this.currentLevel.rt;
 
     // update radiation tolerance bar

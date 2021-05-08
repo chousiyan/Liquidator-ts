@@ -1,6 +1,7 @@
 import Phaser, { GameObjects } from 'phaser';
 import PlayerSprite from './PlayerSprite';
 import Level1UIScene from '../scenes/Level1UIScene';
+import Level1Scene from '../scenes/Level1Scene';
 
 export default class EnemySprite extends Phaser.Physics.Arcade.Sprite {
   // Default speed = 100
@@ -13,7 +14,7 @@ export default class EnemySprite extends Phaser.Physics.Arcade.Sprite {
   constructor(scene: Phaser.Scene, x, y, key) {
     super(scene, x, y, key);
 
-    this.player = this.scene.player;
+    this.player = (this.scene as Level1Scene).player;
     // this.bullet = this.scene.bullet;
 
     scene.add.existing(this);
@@ -22,7 +23,7 @@ export default class EnemySprite extends Phaser.Physics.Arcade.Sprite {
     // when the rabbit is shot by a bullet
     this.scene.physics.add.overlap(
       this,
-      this.scene.weapon.bullets,
+      (this.scene as Level1Scene).weapon.bullets,
       this.shot,
       null,
       this
@@ -83,8 +84,8 @@ export default class EnemySprite extends Phaser.Physics.Arcade.Sprite {
 
     // when rabbit dies
     if (enemy.hp <= 0) {
-      this.scene.rabbitDies(this.x, this.y);
-      let uiScene = this.scene.scene.get('UI');
+      (this.scene as Level1Scene).rabbitDies(this.x, this.y);
+      let uiScene = this.scene.scene.get('UI') as Level1UIScene;
       uiScene.countRabbits();
       enemy.destroy();
     }
